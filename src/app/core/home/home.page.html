@@ -1,0 +1,30 @@
+<ion-content [fullscreen]="true">
+  <section id="container" class="p-5 flex flex-col justify-between">
+    <header class="flex justify-between align-top">
+      <a routerLink="">
+        <app-button-icon [iconName]="'menu'"></app-button-icon>
+      </a>
+      <div>
+        <h1 class="text-4xl font-bold">{{ this.currentCity }}</h1>
+        <p class="text-sm">Last update: {{ this.latestUpdateTimestamp | dateFormat:'HH:mm' }}</p>
+      </div>
+      <a>
+        <app-button-icon [iconName]="'menu'"></app-button-icon>
+      </a>
+    </header>
+    <main *ngIf="this.currentWeather !== undefined">
+      <p class="flex justify-center align-top">
+        <span class="font-bold text-8xl text-white">{{ this.currentWeather.main.temp | temperatureValue:this.ETemperatureUnit.Kelvin:this.ETemperatureUnit.Celsius | number:'1.0-0' }}</span>
+        <span class="font-bold text-3xl text-white mt-2 ml-1">{{ '' | temperatureUnit:this.ETemperatureUnit.Celsius }}</span>
+      </p>
+      <p class="text-slate-300 font-bold text-xl">
+        <span>{{ this.currentWeather.weather[0].description | titlecase }}</span>
+        &nbsp;
+        <span>{{ this.currentWeather.main.temp_max | temperatureValue:this.ETemperatureUnit.Kelvin:this.ETemperatureUnit.Celsius | number:'1.0-0' | temperatureUnit:this.ETemperatureUnit.Celsius }}</span>
+        &nbsp;/&nbsp;
+        <span>{{ this.currentWeather.main.temp_min | temperatureValue:this.ETemperatureUnit.Kelvin:this.ETemperatureUnit.Celsius | number:'1.0-0' | temperatureUnit:this.ETemperatureUnit.Celsius }}</span>
+      </p>
+    </main> 
+    <app-home-forecast></app-home-forecast>
+  </section>
+</ion-content>

@@ -1,0 +1,13 @@
+<a *ngIf="this.routerLink !== undefined; else withoutLink" 
+  [routerLink]="[this.routerLink]"
+  routerLinkActive="router-link-active">
+  <button [class]="this.btnClass">
+    <ng-content select="span"></ng-content>
+  </button>
+</a>
+
+<ng-template #withoutLink>
+  <button [class]="this.btnClass">
+    <ng-content select="span"></ng-content>
+  </button>
+</ng-template>

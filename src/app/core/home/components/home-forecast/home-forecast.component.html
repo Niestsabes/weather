@@ -1,0 +1,27 @@
+<article class="bg-slate-100 bg-opacity-20 rounded-xl p-3 w-full">
+  <table class="w-full">
+    <thead>
+      <tr>
+        <th scpoe="col" class="text-left" colspan="3">Prévisions</th>
+        <th scpoe="col" class="text-right">
+          <a>Détails</a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let forecast of this.currentForecast?.list || []">
+        <td class="text-center pr-2">Icon</td>
+        <td class="text-left">{{ forecast.dt | dateFormat: 'ddd' }}.</td>
+        <td class="text-left">{{ forecast.weather[0].description | titlecase }}</td>
+        <td class="text-right">
+          <span>{{ forecast.main.temp_max | temperatureValue:this.ETemperatureUnit.Kelvin:this.ETemperatureUnit.Celsius | number:'1.0-0' | temperatureUnit:this.ETemperatureUnit.Celsius }}</span>
+          &nbsp;/&nbsp;
+          <span>{{ forecast.main.temp_min | temperatureValue:this.ETemperatureUnit.Kelvin:this.ETemperatureUnit.Celsius | number:'1.0-0' | temperatureUnit:this.ETemperatureUnit.Celsius }}</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <app-button [routerLink]="'/forecast'">
+    <span>Prévisions sur 5 jours</span>
+  </app-button>
+</article>
