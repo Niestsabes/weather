@@ -15,6 +15,6 @@ export class ButtonIconComponent {
   @Input() routerLink!: string;
 
   get btnClass(): string {
-    return `rounded-3xl h-12 w-12 hover:bg-slate-300 hover:bg-opacity-20`;
+    return `rounded-3xl h-12 w-12 hover:bg-slate-300 hover:bg-opacity-20 text-xl`;
   }
 }

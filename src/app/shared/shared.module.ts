@@ -6,8 +6,16 @@ import { TemperatureUnitPipe } from './pipes/temperature/temperature-unit.pipe';
 import { DateFormatPipe } from './pipes/date/date-format.pipe';
 import { ButtonIconComponent } from "./components/ui/button-icon/button-icon.component";
 import { ButtonComponent } from "./components/ui/button/button.component";
+import { RouterModule } from "@angular/router";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-const modules = [CommonModule, HttpClientModule];
+const modules = [
+    CommonModule,
+    HttpClientModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
+];
 const pipes = [DateFormatPipe, TemperaturePipe, TemperatureUnitPipe];
 const components = [ButtonComponent, ButtonIconComponent]
 

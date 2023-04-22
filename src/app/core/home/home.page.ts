@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Weather } from '../../shared/models/weather.interface';
-import { WeatherApiService } from '../../shared/services/api/weather-api.service';
 import { SharedModule } from '../../shared/shared.module';
 import { IonicModule } from '@ionic/angular';
 import { ETemperatureUnit } from '../../shared/enums/temparature-unit.enum';
 import { HomeForecastComponent } from "./components/home-forecast/home-forecast.component";
+import { select, Store } from '@ngrx/store';
+import { selectWeather, selectWeatherData } from 'src/app/shared/states/weather/weather.selector';
+import { AppState } from 'src/app/shared/models/state/app-state.interface';
+import { loadWeather } from 'src/app/shared/states/weather/weather.action';
 
 @Component({
     selector: 'app-home',
@@ -16,22 +19,18 @@ import { HomeForecastComponent } from "./components/home-forecast/home-forecast.
 export class HomePage implements OnInit {
 
   public readonly ETemperatureUnit = ETemperatureUnit;
-  public currentWeather!: Weather;
   public currentCity!: string;
   public latestUpdateTimestamp!: number;
 
+  public readonly currentWeatherData$ = this._store.pipe(select(selectWeatherData));
+  public readonly currentWeather$ = this._store.pipe(select(selectWeather));
+
   constructor(
-    private _weatherApiService: WeatherApiService
+    private _store: Store<AppState>
   ) {}
 
   ngOnInit(): void {
-    this.currentCity = 'Lyon';
-    this._weatherApiService.getCurrentWeatherByCity(this.currentCity).subscribe({
-      next: (weather) => {
-        this.currentWeather = weather;
-        this.latestUpdateTimestamp = Date.now();
-      }
-    });
+    this._store.dispatch(loadWeather());
   }
 
 }

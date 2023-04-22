@@ -2,12 +2,12 @@
   [routerLink]="[this.routerLink]"
   routerLinkActive="router-link-active">
   <button [class]="this.btnClass">
-    <span>A</span>
+    <span [class]="this.iconName"></span>
   </button>
 </a>
 
 <ng-template #withoutLink>
   <button [class]="this.btnClass">
-    <span>A</span>
+    <span [class]="this.iconName"></span>
   </button>
 </ng-template>

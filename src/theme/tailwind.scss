@@ -1969,6 +1969,10 @@ video {
   justify-content: space-between;
 }
 
+.overflow-hidden {
+  overflow: hidden;
+}
+
 .rounded-3xl {
   border-radius: 1.5rem;
 }
@@ -2001,6 +2005,10 @@ video {
 
 .p-5 {
   padding: 1.25rem;
+}
+
+.p-2 {
+  padding: 0.5rem;
 }
 
 .pr-2 {

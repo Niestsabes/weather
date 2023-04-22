@@ -9,7 +9,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let forecast of this.currentForecast?.list || []">
+      <tr *ngFor="let forecast of (this.currentForecast$ |async)?.list || []">
         <td class="text-center pr-2">Icon</td>
         <td class="text-left">{{ forecast.dt | dateFormat: 'ddd' }}.</td>
         <td class="text-left">{{ forecast.weather[0].description | titlecase }}</td>

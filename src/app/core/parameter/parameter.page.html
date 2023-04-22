@@ -1,0 +1,63 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons [collapse]="true" slot="start">
+      <ion-button [routerLink]="'/home'">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Paramètres
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="this.paramformGroup">
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label>Unités de mesure</ion-label>
+      </ion-item-divider>
+      <ion-item>
+        <ion-label>Température</ion-label>
+        <ion-select formControlName="temperatureUnit" interface="popover">
+          <ion-select-option
+            *ngFor="let temperatureUnit of this.ETemperatureUnit | keyvalue"
+            [value]="temperatureUnit.value">
+            {{ temperatureUnit.value }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Vitesse du vent</ion-label>
+        <ion-select formControlName="windUnit" interface="popover">
+          <ion-select-option
+            *ngFor="let windUnit of this.EWindUnit | keyvalue"
+            [value]="windUnit.value">
+            {{ windUnit.value }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Pression Atmosphérique</ion-label>
+        <ion-select formControlName="presureUnit" interface="popover">
+          <ion-select-option
+            *ngFor="let presureUnit of this.EPresureUnit | keyvalue"
+            [value]="presureUnit.value">
+            {{ presureUnit.value }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-item-group>
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label>&Agrave; propos</ion-label>
+      </ion-item-divider>
+      <ion-item [button]="true">
+        <ion-label>Commentaire</ion-label>
+      </ion-item>
+      <ion-item [button]="true">
+        <ion-label>Crédits</ion-label>
+      </ion-item> 
+    </ion-item-group>
+  </form>
+</ion-content>

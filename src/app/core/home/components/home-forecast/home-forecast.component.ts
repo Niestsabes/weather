@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
+import { Store, select } from '@ngrx/store';
 import { map } from 'rxjs/operators';
 import { ETemperatureUnit } from 'src/app/shared/enums/temparature-unit.enum';
-import { Weather, WeatherForecast } from 'src/app/shared/models/weather.interface';
-import { WeatherApiService } from 'src/app/shared/services/api/weather-api.service';
+import { AppState } from 'src/app/shared/models/state/app-state.interface';
+import { WeatherForecast } from 'src/app/shared/models/weather.interface';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { loadWeatherForecast } from 'src/app/shared/states/weather/weather.action';
+import { selectWeatherForecast } from 'src/app/shared/states/weather/weather.selector';
 
 const modules = [IonicModule, SharedModule];
 
@@ -19,35 +22,22 @@ export class HomeForecastComponent implements OnInit {
 
   public readonly ETemperatureUnit = ETemperatureUnit;
   public readonly NbDays = 3;
-  public readonly SecondToDay = 60 * 60 * 24;
   public currentForecast!: WeatherForecast;
 
+  public readonly currentForecast$ = this._store.pipe(
+    select(selectWeatherForecast),
+    map((forecast) => {
+      if (forecast?.list)
+        forecast.list = forecast?.list.slice(0, this.NbDays);
+      return forecast;
+    })
+  );
+
   constructor(
-    private _weatherApiService: WeatherApiService
+    private _store: Store<AppState>,
   ) {}
 
   ngOnInit(): void {
-    this._weatherApiService.getForecastByCity('Lyon')
-      .pipe(map((forecast) => {
-        forecast.list = this.groupWeatherByDate(forecast.list).slice(0, this.NbDays);
-        return forecast;
-      }))
-      .subscribe({
-        next: (forecast) => { this.currentForecast = forecast; }
-      });
-  }
-
-  public groupWeatherByDate(listWeather: Weather[]): Weather[] {
-    const recordWeather = listWeather.reduce<{ [date: string]: Weather }>((acc, item) => {
-      const daystamp = Math.floor(item.dt / this.SecondToDay);
-      if (!acc[daystamp]) {
-        acc[daystamp] = item;
-        return acc;
-      }
-      acc[daystamp].main.temp_max = Math.max(acc[daystamp].main.temp_max, item.main.temp_max);
-      acc[daystamp].main.temp_min = Math.min(acc[daystamp].main.temp_min, item.main.temp_min);
-      return acc;
-    }, {});
-    return Object.values(recordWeather);
+    this._store.dispatch(loadWeatherForecast());
   }
 }

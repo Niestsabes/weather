@@ -6,7 +6,11 @@ import { ETemperatureUnit } from '../../enums/temparature-unit.enum';
 })
 export class TemperaturePipe implements PipeTransform {
 
-  transform(value: number, fromUnit: ETemperatureUnit, toUnit: ETemperatureUnit): number {
+  transform(value: number|undefined, fromUnit: ETemperatureUnit, toUnit: ETemperatureUnit): number {
+    if (value === undefined) {
+      return 0;
+    }
+    
     if (fromUnit === toUnit) {
       return value;
     }

@@ -18,4 +18,12 @@ export const routes: Routes = [
     path: 'forecast',
     loadComponent: () => import('./core/forecast/forecast.page').then( m => m.ForecastPage)
   },
+  {
+    path: 'parameter',
+    loadComponent: () => import('./core/parameter/parameter.page').then( m => m.ParameterPage)
+  },
+  {
+    path: 'share',
+    loadComponent: () => import('./core/share/share.page').then( m => m.SharePage)
+  },
 ];
