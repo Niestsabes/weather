@@ -22,7 +22,6 @@ export class HomePage implements OnInit {
   public currentCity!: string;
   public latestUpdateTimestamp!: number;
 
-  public readonly currentWeatherData$ = this._store.pipe(select(selectWeatherData));
   public readonly currentWeather$ = this._store.pipe(select(selectWeather));
 
   constructor(

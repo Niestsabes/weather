@@ -1,7 +1,7 @@
 import { City } from "./city.interface"
 
 export type Weather = {
-    coord: {
+    coord?: {
       lon: number,
       lat: number,
     },
@@ -13,7 +13,7 @@ export type Weather = {
         icon: string
       }
     ],
-    base: string,
+    base?: string,
     main: {
       temp: number,
       feels_like: number,
@@ -21,8 +21,9 @@ export type Weather = {
       temp_max: number,
       pressure: number,
       humidity: number,
-      sea_level: number,
-      grnd_level: number
+      sea_level?: number,
+      grnd_level?: number
+      temp_kf?: number
     },
     visibility: number,
     wind: {
@@ -30,24 +31,27 @@ export type Weather = {
       deg: number,
       gust: number
     },
-    rain: {
-      '1h': number
+    rain?: {
+      [hour: string]: number
     },
     clouds: {
-      all: 100
+      all: number
     },
+    pop?: number,
     dt: number,
+    dt_txt?: string,
     sys: {
-      type: number,
-      id: number,
-      country: string,
-      sunrise: number,
-      sunset: number
+      type?: number,
+      id?: number,
+      country?: string,
+      sunrise?: number,
+      sunset?: number,
+      pod?: string
     },
-    timezone: number,
-    id: number,
-    name: string,
-    cod: number
+    timezone?: number,
+    id?: number,
+    name?: string,
+    cod?: number
 }
 
 export type WeatherForecast = {
