@@ -12,10 +12,11 @@ $RECYCLE.BIN/
 *.log
 log.txt
 
-
 /.sourcemaps
 /.versions
 /coverage
+
+NOTES.md
 
 # Environment
 /src/environments/*
@@ -55,7 +56,6 @@ yarn-error.log
 !.vscode/launch.json
 !.vscode/extensions.json
 .history/*
-
 
 # Miscellaneous
 /.angular
