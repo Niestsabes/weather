@@ -15,12 +15,12 @@ import { appConfig } from 'src/config/config';
 export class WeatherApiService {
 
   constructor(
-    private http: HttpClient,
+    private _http: HttpClient,
     private _weatherUtilsService: WeatherUtilsService
   ) { }
 
   public getCurrentWeatherByCity(cityName: string): Observable<Weather> {
-    // return this.http.get<Weather>(
+    // return this._http.get<Weather>(
     //   `${environment.weatherApiUrl}/weather`,
     //   { params: { q: cityName, appid: environment.weatherApiKey } }
     // );
@@ -34,7 +34,7 @@ export class WeatherApiService {
   }
 
   public getForecastByCity(cityName: string): Observable<WeatherForecast> {
-    // return this.http.get<WeatherForecast>(
+    // return this._http.get<WeatherForecast>(
     //   `${environment.weatherApiUrl}/forecast`,
     //   { params: { q: cityName, appid: environment.weatherApiKey } }
     // );

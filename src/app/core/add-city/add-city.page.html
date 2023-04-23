@@ -20,7 +20,7 @@
     </ion-searchbar>
     <ion-list *ngIf="this.cities.length > 0">
       <ion-item *ngFor="let city of cities" (click)="this.selectCity(city); this.clearSearch()">
-        <span>{{ city.name }}</span>
+        <span>{{ city.name }} ({{ city.country }})</span>
         <app-button-icon
           slot="end"
           [iconName]="'icon-plus'">
@@ -28,18 +28,6 @@
       </ion-item>
     </ion-list>
   </form>
-
-
-  <!-- <ion-list>
-    <ion-item *ngFor="let city of selectedCities">
-      <span>{{ city.name }}</span>
-      <app-button-icon
-        slot="end"
-        [iconName]="'icon-trash'"
-        (click)="this.removeCity(city)">
-      </app-button-icon>
-    </ion-item>
-  </ion-list> -->
   <section class="p-3">
     <ng-container *ngFor="let city of selectedCities">
       <app-city-card

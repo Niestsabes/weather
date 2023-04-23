@@ -1,4 +1,4 @@
 export const appConfig = {
     forecastDays: 5,
-    searchKeywordMinLength: 3,
+    searchKeywordMinLength: 2,
 }
