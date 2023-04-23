@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { Store, select } from '@ngrx/store';
 import { map } from 'rxjs/operators';
@@ -28,6 +28,7 @@ export class HomeForecastComponent implements OnInit {
   public readonly NbDays = 3;
   public readonly currentForecast$ = this._store.pipe(select(selectWeatherForecast));
   public readonly userSettings$ = this._store.pipe(select(selectUserParams));
+  @Input() focusedCityName!: string;
 
   constructor(
     private _store: Store<AppState>,

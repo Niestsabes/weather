@@ -1,13 +1,15 @@
 export type City = {
-    id: number,
+    id?: number,
     name: string,
-    coord: {
+    coord?: {
         lat: number,
         lon: number
     },
     country: string,
-    population: number,
-    timezone: number,
-    sunrise: number,
-    sunset: number
+    population?: number,
+    timezone?: number,
+    sunrise?: number,
+    sunset?: number
 }
+
+export type RecordCity<T> = { [cityName: string]: T }

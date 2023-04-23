@@ -12,6 +12,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { weatherForecastReducer, weatherReducer } from './app/shared/states/weather/weather.reducer';
 import { userReducer } from './app/shared/states/user/user.reducer';
+import { UserEffect } from './app/shared/states/user/user.effect';
 
 if (environment.production) {
   enableProdMode();
@@ -27,7 +28,7 @@ bootstrapApplication(AppComponent, {
       weather: weatherReducer,
       weatherForecast: weatherForecastReducer
     })),
-    importProvidersFrom(EffectsModule.forRoot([WeatherEffect])),
+    importProvidersFrom(EffectsModule.forRoot([UserEffect, WeatherEffect])),
     provideRouter(routes),
   ],
 });

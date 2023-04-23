@@ -2,40 +2,81 @@ import { createReducer, on } from "@ngrx/store";
 import { ELoadingStatus } from "../../enums/loading-status.enum";
 import { AppStateLoadedValue } from "../../models/state/app-state.interface";
 import { Weather, WeatherForecast } from "../../models/weather.interface";
-import { loadWeather, loadWeatherError, loadWeatherForecast, loadWeatherForecastError, loadWeatherForecastSuccess, loadWeatherSuccess } from "./weather.action";
+import { loadWeather, loadWeatherError, loadWeatherForCity, loadWeatherForCityError, loadWeatherForCitySuccess, loadWeatherForecast, loadWeatherForecastError, loadWeatherForecastForCity, loadWeatherForecastForCityError, loadWeatherForecastForCitySuccess, loadWeatherForecastSuccess, loadWeatherSuccess, removeWeatherForCity, removeWeatherForecastForCity } from "./weather.action";
+import { RecordCity } from "../../models/city.interface";
 
 export const weatherReducer = buildReducer<Weather>(
-    loadWeather, loadWeatherSuccess, loadWeatherError
+    {},
+    loadWeather, loadWeatherSuccess, loadWeatherError,
+    loadWeatherForCity, loadWeatherForCitySuccess, loadWeatherForCityError,
+    removeWeatherForCity
 );
 
 export const weatherForecastReducer = buildReducer<WeatherForecast>(
-    loadWeatherForecast, loadWeatherForecastSuccess, loadWeatherForecastError
+    {},
+    loadWeatherForecast, loadWeatherForecastSuccess, loadWeatherForecastError,
+    loadWeatherForecastForCity, loadWeatherForecastForCitySuccess, loadWeatherForecastForCityError,
+    removeWeatherForecastForCity
 );
 
 function buildReducer<T>(
+    defaultValue: RecordCity<T>,
     loadAction: any,
     successAction: any,
-    errorAction: any
+    errorAction: any,
+    loadActionByCity?: any,
+    successActionByCity?: any,
+    errorActionByCity?: any,
+    removeActionByCity?: any,
 ) {
     return createReducer(
-        { value: null, status: ELoadingStatus.Pending, error: null },
-        on(loadAction, (state: AppStateLoadedValue<T>, {}) => ({
+        { value: defaultValue, status: ELoadingStatus.Pending, error: null },
+        on(loadAction, (state: AppStateLoadedValue<RecordCity<T>>, {}) => ({
             ...state,
-            value: null,
+            value: defaultValue,
             error: null,
             status: ELoadingStatus.Loading
         })),
-        on(successAction, (state: AppStateLoadedValue<T>, { value }) => ({
+        on(successAction, (state: AppStateLoadedValue<RecordCity<T>>, { value }) => ({
             ...state,
             value: value,
             error: null,
             status: ELoadingStatus.Success
         })),
-        on(errorAction, (state: AppStateLoadedValue<T>, { message }) => ({
+        on(errorAction, (state: AppStateLoadedValue<RecordCity<T>>, { message }) => ({
             ...state,
-            value: null,
+            value: defaultValue,
             error: message,
             status: ELoadingStatus.Error
-        }))
+        })),
+        on(loadActionByCity, (state: AppStateLoadedValue<RecordCity<T>>, { cityName }) => ({
+            ...state,
+            error: null,
+            status: ELoadingStatus.Loading
+        })),
+        on(successActionByCity, (state: AppStateLoadedValue<RecordCity<T>>, { cityName, weather }) => ({
+            ...state,
+            value: {
+                ...state.value,
+                [cityName]: weather
+            },
+            error: null,
+            status: ELoadingStatus.Success
+        })),
+        on(errorActionByCity, (state: AppStateLoadedValue<RecordCity<T>>, { message }) => ({
+            ...state,
+            error: message,
+            status: ELoadingStatus.Error
+        })),
+        on(removeActionByCity, (state: AppStateLoadedValue<RecordCity<T>>, { cityName }) => {
+            const value = { ...state.value };
+            delete value[cityName];
+            return {
+                ...state,
+                value,
+                error: null,
+                status: ELoadingStatus.Success
+            };
+        })
     );
 }

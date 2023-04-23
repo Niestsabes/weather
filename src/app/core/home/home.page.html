@@ -3,7 +3,7 @@
     <header class="flex justify-between align-top">
       <app-button-icon [iconName]="'icon-plus'" [routerLink]="'/add-city'"></app-button-icon>
       <div>
-        <h1 class="text-4xl font-bold">{{ this.currentCity }}</h1>
+        <h1 class="text-4xl font-bold">{{ this.focusedCityName }}</h1>
         <p class="text-sm">Last update: {{ this.latestUpdateTimestamp | dateFormat:'HH:mm' }}</p>
       </div>
       <app-button-icon id="menu-popover-trigger" [iconName]="'icon-ellipsis-vertical'"></app-button-icon>
@@ -21,7 +21,7 @@
     <main *ngIf="(this.currentWeather$ | async) !== null">
       <p class="flex justify-center align-top">
         <span class="font-bold text-8xl text-white">
-          {{ (this.currentWeather$ | async)?.main?.temp | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' }}
+          {{ (this.currentWeather$ | async)?.[this.focusedCityName]?.main?.temp | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' }}
         </span>
         <span class="font-bold text-3xl text-white mt-2 ml-1">
           {{ '' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}
@@ -29,18 +29,18 @@
       </p>
       <p class="text-slate-300 font-bold text-xl">
         <span>
-          {{ (this.currentWeather$ | async)?.weather[0].description | titlecase }}
+          {{ (this.currentWeather$ | async)?.[this.focusedCityName]?.weather[0].description | titlecase }}
         </span>
         &nbsp;
         <span>
-          {{ (this.currentWeather$ | async)?.main.temp_max | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}
+          {{ (this.currentWeather$ | async)?.[this.focusedCityName]?.main.temp_max | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}
         </span>
         &nbsp;/&nbsp;
         <span>
-          {{ (this.currentWeather$ | async)?.main.temp_min | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}
+          {{ (this.currentWeather$ | async)?.[this.focusedCityName]?.main.temp_min | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}
         </span>
       </p>
     </main> 
-    <app-home-forecast></app-home-forecast>
+    <app-home-forecast [focusedCityName]="this.focusedCityName"></app-home-forecast>
   </section>
 </ion-content>

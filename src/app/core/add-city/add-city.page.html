@@ -11,10 +11,41 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">add-city</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="relative">
+  <form [formGroup]="this.searchFormGroup" class="sticky top-0 bg-black">
+    <ion-searchbar
+      placeholder="Search cities..."
+      [formControlName]="'search'"
+      (ionClear)="clearSearch()">
+    </ion-searchbar>
+    <ion-list *ngIf="this.cities.length > 0">
+      <ion-item *ngFor="let city of cities" (click)="this.selectCity(city); this.clearSearch()">
+        <span>{{ city.name }}</span>
+        <app-button-icon
+          slot="end"
+          [iconName]="'icon-plus'">
+        </app-button-icon>
+      </ion-item>
+    </ion-list>
+  </form>
+
+
+  <!-- <ion-list>
+    <ion-item *ngFor="let city of selectedCities">
+      <span>{{ city.name }}</span>
+      <app-button-icon
+        slot="end"
+        [iconName]="'icon-trash'"
+        (click)="this.removeCity(city)">
+      </app-button-icon>
+    </ion-item>
+  </ion-list> -->
+  <section class="p-3">
+    <ng-container *ngFor="let city of selectedCities">
+      <app-city-card
+        [city]="city"
+        (removeCity)="this.removeCity(city)">
+      </app-city-card>
+    </ng-container>
+  </section>
 </ion-content>

@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Weather } from '../../shared/models/weather.interface';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { IonicModule } from '@ionic/angular';
 import { ETemperatureUnit } from '../../shared/enums/temparature-unit.enum';
 import { HomeForecastComponent } from "./components/home-forecast/home-forecast.component";
 import { select, Store } from '@ngrx/store';
-import { selectWeather, selectWeatherData } from 'src/app/shared/states/weather/weather.selector';
+import { selectWeather } from 'src/app/shared/states/weather/weather.selector';
 import { AppState } from 'src/app/shared/models/state/app-state.interface';
 import { loadWeather } from 'src/app/shared/states/weather/weather.action';
 import { selectUserParams } from 'src/app/shared/states/user/user.selector';
@@ -19,12 +18,13 @@ import { selectUserParams } from 'src/app/shared/states/user/user.selector';
 })
 export class HomePage implements OnInit {
 
-  public readonly ETemperatureUnit = ETemperatureUnit;
-  public currentCity!: string;
-  public latestUpdateTimestamp!: number;
+  @ViewChild('paragraph') p: ElementRef;
 
+  public readonly ETemperatureUnit = ETemperatureUnit;
   public readonly currentWeather$ = this._store.pipe(select(selectWeather));
   public readonly userSettings$ = this._store.pipe(select(selectUserParams));
+  public latestUpdateTimestamp!: number;
+  public focusedCityName: string = 'Paris';
 
   constructor(
     private _store: Store<AppState>

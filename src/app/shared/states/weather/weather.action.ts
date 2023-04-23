@@ -1,5 +1,6 @@
 import { createAction, props } from "@ngrx/store";
 import { Weather, WeatherForecast } from "../../models/weather.interface";
+import { RecordCity } from "../../models/city.interface";
 
 export const loadWeather = createAction(
     '[To DO] Load Weather'
@@ -7,7 +8,7 @@ export const loadWeather = createAction(
 
 export const loadWeatherSuccess = createAction(
     '[To Do] Load Weather success',
-    props<{ value: Weather }>()
+    props<{ value: RecordCity<Weather> }>()
 );
 
 export const loadWeatherError = createAction(
@@ -21,10 +22,51 @@ export const loadWeatherForecast = createAction(
 
 export const loadWeatherForecastSuccess = createAction(
     '[To Do] Load WeatherForecast success',
-    props<{ value: WeatherForecast }>()
+    props<{ value: RecordCity<WeatherForecast> }>()
 );
 
 export const loadWeatherForecastError = createAction(
     '[To Do] Load WeatherForecast failed',
     props<{ message: string }>()
 );
+
+export const loadWeatherForCity = createAction(
+    '[To DO] Load Weather for city',
+    props<{ cityName: string }>()
+);
+
+export const loadWeatherForecastForCity = createAction(
+    '[To DO] Load WeatherForecast for city',
+    props<{ cityName: string }>()
+);
+
+export const loadWeatherForCitySuccess = createAction(
+    '[To Do] Load Weather for city success',
+    props<{ cityName: string, weather: Weather }>()
+);
+
+export const loadWeatherForecastForCitySuccess = createAction(
+    '[To Do] Load WeatherForecast for city success',
+    props<{ cityName: string, weather: WeatherForecast }>()
+);
+
+export const loadWeatherForCityError = createAction(
+    '[To Do] Load Weather for city failed',
+    props<{ message: string }>()
+);
+
+export const loadWeatherForecastForCityError = createAction(
+    '[To Do] Load WeatherForecast for city failed',
+    props<{ message: string }>()
+);
+
+export const removeWeatherForCity = createAction(
+    '[To Do] Remove Weather for city',
+    props<{ cityName: string }>()
+);
+
+export const removeWeatherForecastForCity = createAction(
+    '[To Do] Remove WeatherForecast for city',
+    props<{ cityName: string }>()
+);
+
