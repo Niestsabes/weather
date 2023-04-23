@@ -19,9 +19,9 @@
         <td class="text-left">{{ forecast.dt | dateFormat: 'ddd' }}.</td>
         <td class="text-left">{{ forecast.weather[0].description | titlecase }}</td>
         <td class="text-right">
-          <span>{{ forecast.main.temp_max | temperatureValue:this.ETemperatureUnit.Celsius | number:'1.0-0' | temperatureUnit:this.ETemperatureUnit.Celsius }}</span>
+          <span>{{ forecast.main.temp_max | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}</span>
           &nbsp;/&nbsp;
-          <span>{{ forecast.main.temp_min | temperatureValue:this.ETemperatureUnit.Celsius | number:'1.0-0' | temperatureUnit:this.ETemperatureUnit.Celsius }}</span>
+          <span>{{ forecast.main.temp_min | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}</span>
         </td>
       </tr>
     </tbody>

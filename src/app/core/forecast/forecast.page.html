@@ -29,7 +29,7 @@
           [iconDescription]="forecast.weather[0].description">
         </app-weather-icon>
         <p class="w-full">
-          {{ forecast.main.temp_max | temperatureValue:this.ETemperatureUnit.Celsius | number:'1.0-0' | temperatureUnit:this.ETemperatureUnit.Celsius }}
+          {{ forecast.main.temp_max | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}
         </p>
         <div class="relative h-40">
           <p class="absolute w-full top-0">
@@ -40,9 +40,9 @@
           </p>
         </div>
         <p class="w-full">
-          {{ forecast.main.temp_min | temperatureValue:this.ETemperatureUnit.Celsius | number:'1.0-0' | temperatureUnit:this.ETemperatureUnit.Celsius }}
+          {{ forecast.main.temp_min | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}
         </p>
-        <span class="text-sm">{{ forecast.wind.speed | windValue:this.EWindUnit.KM_H | number:'1.0-0' | windUnit:this.EWindUnit.KM_H }}</span>
+        <span class="text-sm">{{ forecast.wind.speed | windValue:(this.userSettings$ | async).windUnit | number:'1.0-0' | windUnit:(this.userSettings$ | async).windUnit }}</span>
       </article>
     </section>
   </div>

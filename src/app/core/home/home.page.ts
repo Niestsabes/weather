@@ -8,6 +8,7 @@ import { select, Store } from '@ngrx/store';
 import { selectWeather, selectWeatherData } from 'src/app/shared/states/weather/weather.selector';
 import { AppState } from 'src/app/shared/models/state/app-state.interface';
 import { loadWeather } from 'src/app/shared/states/weather/weather.action';
+import { selectUserParams } from 'src/app/shared/states/user/user.selector';
 
 @Component({
     selector: 'app-home',
@@ -23,6 +24,7 @@ export class HomePage implements OnInit {
   public latestUpdateTimestamp!: number;
 
   public readonly currentWeather$ = this._store.pipe(select(selectWeather));
+  public readonly userSettings$ = this._store.pipe(select(selectUserParams));
 
   constructor(
     private _store: Store<AppState>

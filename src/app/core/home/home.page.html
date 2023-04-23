@@ -20,15 +20,25 @@
     </header>
     <main *ngIf="(this.currentWeather$ | async) !== null">
       <p class="flex justify-center align-top">
-        <span class="font-bold text-8xl text-white">{{ (this.currentWeather$ | async)?.main?.temp | temperatureValue:this.ETemperatureUnit.Celsius | number:'1.0-0' }}</span>
-        <span class="font-bold text-3xl text-white mt-2 ml-1">{{ '' | temperatureUnit:this.ETemperatureUnit.Celsius }}</span>
+        <span class="font-bold text-8xl text-white">
+          {{ (this.currentWeather$ | async)?.main?.temp | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' }}
+        </span>
+        <span class="font-bold text-3xl text-white mt-2 ml-1">
+          {{ '' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}
+        </span>
       </p>
       <p class="text-slate-300 font-bold text-xl">
-        <span>{{ (this.currentWeather$ | async)?.weather[0].description | titlecase }}</span>
+        <span>
+          {{ (this.currentWeather$ | async)?.weather[0].description | titlecase }}
+        </span>
         &nbsp;
-        <span>{{ (this.currentWeather$ | async)?.main.temp_max | temperatureValue:this.ETemperatureUnit.Celsius | number:'1.0-0' | temperatureUnit:this.ETemperatureUnit.Celsius }}</span>
+        <span>
+          {{ (this.currentWeather$ | async)?.main.temp_max | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}
+        </span>
         &nbsp;/&nbsp;
-        <span>{{ (this.currentWeather$ | async)?.main.temp_min | temperatureValue:this.ETemperatureUnit.Celsius | number:'1.0-0' | temperatureUnit:this.ETemperatureUnit.Celsius }}</span>
+        <span>
+          {{ (this.currentWeather$ | async)?.main.temp_min | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}
+        </span>
       </p>
     </main> 
     <app-home-forecast></app-home-forecast>

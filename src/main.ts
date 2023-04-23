@@ -7,7 +7,6 @@ import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
 import { SharedModule } from './app/shared/shared.module';
-import { AppEffect } from './app/shared/states/app.effect';
 import { WeatherEffect } from './app/shared/states/weather/weather.effect';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -28,7 +27,7 @@ bootstrapApplication(AppComponent, {
       weather: weatherReducer,
       weatherForecast: weatherForecastReducer
     })),
-    importProvidersFrom(EffectsModule.forRoot([AppEffect, WeatherEffect])),
+    importProvidersFrom(EffectsModule.forRoot([WeatherEffect])),
     provideRouter(routes),
   ],
 });

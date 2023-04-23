@@ -12,14 +12,13 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <form [formGroup]="this.paramformGroup">
+  <form [formGroup]="this.paramFormGroup">
     <ion-item-group>
       <ion-item-divider>
         <ion-label>Unités de mesure</ion-label>
       </ion-item-divider>
       <ion-item>
-        <ion-label>Température</ion-label>
-        <ion-select formControlName="temperatureUnit" interface="popover">
+        <ion-select formControlName="temperatureUnit" interface="popover" label="Température">
           <ion-select-option
             *ngFor="let temperatureUnit of this.ETemperatureUnit | keyvalue"
             [value]="temperatureUnit.value">
@@ -28,8 +27,7 @@
         </ion-select>
       </ion-item>
       <ion-item>
-        <ion-label>Vitesse du vent</ion-label>
-        <ion-select formControlName="windUnit" interface="popover">
+        <ion-select formControlName="windUnit" interface="popover" label="Vitesse du vent">
           <ion-select-option
             *ngFor="let windUnit of this.EWindUnit | keyvalue"
             [value]="windUnit.value">
@@ -38,8 +36,7 @@
         </ion-select>
       </ion-item>
       <ion-item>
-        <ion-label>Pression Atmosphérique</ion-label>
-        <ion-select formControlName="presureUnit" interface="popover">
+        <ion-select formControlName="presureUnit" interface="popover" label="Pression Atmosphérique">
           <ion-select-option
             *ngFor="let presureUnit of this.EPresureUnit | keyvalue"
             [value]="presureUnit.value">
