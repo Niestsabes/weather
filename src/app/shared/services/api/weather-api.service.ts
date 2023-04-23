@@ -19,10 +19,10 @@ export class WeatherApiService {
     private _weatherUtilsService: WeatherUtilsService
   ) { }
 
-  public getCurrentWeatherByCity(city: string): Observable<Weather> {
+  public getCurrentWeatherByCity(cityName: string): Observable<Weather> {
     // return this.http.get<Weather>(
     //   `${environment.weatherApiUrl}/weather`,
-    //   { params: { q: city, appid: environment.weatherApiKey } }
+    //   { params: { q: cityName, appid: environment.weatherApiKey } }
     // );
     return of(WEATHER_MOCK)
   }
@@ -36,7 +36,7 @@ export class WeatherApiService {
   public getForecastByCity(cityName: string): Observable<WeatherForecast> {
     // return this.http.get<WeatherForecast>(
     //   `${environment.weatherApiUrl}/forecast`,
-    //   { params: { q: city, appid: environment.weatherApiKey } }
+    //   { params: { q: cityName, appid: environment.weatherApiKey } }
     // );
     return of(WEATHER_FORECAST_MOCK)
   }
