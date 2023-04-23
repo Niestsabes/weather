@@ -9,14 +9,19 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let forecast of (this.currentForecast$ |async)?.list || []">
-        <td class="text-center pr-2">Icon</td>
+      <tr *ngFor="let forecast of (this.currentForecast$ |async)?.list || [] | slice: 0:this.NbDays">
+        <td class="text-center">
+          <app-weather-icon
+            [iconCode]="forecast.weather[0].icon"
+            [iconDescription]="forecast.weather[0].description">
+          </app-weather-icon>
+        </td>
         <td class="text-left">{{ forecast.dt | dateFormat: 'ddd' }}.</td>
         <td class="text-left">{{ forecast.weather[0].description | titlecase }}</td>
         <td class="text-right">
-          <span>{{ forecast.main.temp_max | temperatureValue:this.ETemperatureUnit.Kelvin:this.ETemperatureUnit.Celsius | number:'1.0-0' | temperatureUnit:this.ETemperatureUnit.Celsius }}</span>
+          <span>{{ forecast.main.temp_max | temperatureValue:this.ETemperatureUnit.Celsius | number:'1.0-0' | temperatureUnit:this.ETemperatureUnit.Celsius }}</span>
           &nbsp;/&nbsp;
-          <span>{{ forecast.main.temp_min | temperatureValue:this.ETemperatureUnit.Kelvin:this.ETemperatureUnit.Celsius | number:'1.0-0' | temperatureUnit:this.ETemperatureUnit.Celsius }}</span>
+          <span>{{ forecast.main.temp_min | temperatureValue:this.ETemperatureUnit.Celsius | number:'1.0-0' | temperatureUnit:this.ETemperatureUnit.Celsius }}</span>
         </td>
       </tr>
     </tbody>

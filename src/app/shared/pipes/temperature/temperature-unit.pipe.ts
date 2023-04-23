@@ -18,7 +18,7 @@ export class TemperatureUnitPipe implements PipeTransform {
       case ETemperatureUnit.Kelvin:
         return `${value}°K`;
       default:
-        return `${value}`;
+        return `${value}°`;
     }
   }
 

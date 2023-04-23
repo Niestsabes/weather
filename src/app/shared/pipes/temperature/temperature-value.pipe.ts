@@ -4,9 +4,9 @@ import { ETemperatureUnit } from '../../enums/temparature-unit.enum';
 @Pipe({
   name: 'temperatureValue'
 })
-export class TemperaturePipe implements PipeTransform {
+export class TemperatureValuePipe implements PipeTransform {
 
-  transform(value: number|undefined, fromUnit: ETemperatureUnit, toUnit: ETemperatureUnit): number {
+  transform(value: number|undefined, toUnit: ETemperatureUnit, fromUnit: ETemperatureUnit = ETemperatureUnit.Kelvin): number {
     if (value === undefined) {
       return 0;
     }

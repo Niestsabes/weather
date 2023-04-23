@@ -21,17 +21,11 @@ const modules = [IonicModule, SharedModule];
 export class HomeForecastComponent implements OnInit {
 
   public readonly ETemperatureUnit = ETemperatureUnit;
+  public readonly imageBaseUrl = 'http://openweathermap.org/img/wn/';
+  public readonly imageExtension = '.png';
+  public readonly imageSize = 32;
   public readonly NbDays = 3;
-  public currentForecast!: WeatherForecast;
-
-  public readonly currentForecast$ = this._store.pipe(
-    select(selectWeatherForecast),
-    map((forecast) => {
-      if (forecast?.list)
-        forecast.list = forecast?.list.slice(0, this.NbDays);
-      return forecast;
-    })
-  );
+  public readonly currentForecast$ = this._store.pipe(select(selectWeatherForecast));
 
   constructor(
     private _store: Store<AppState>,

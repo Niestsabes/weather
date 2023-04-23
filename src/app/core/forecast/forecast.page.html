@@ -14,7 +14,36 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">forecast</ion-title>
+      <ion-title size="large">Prévisions</ion-title>
     </ion-toolbar>
   </ion-header>
+  <div class="py-3">
+    <section class="flex justify-between overflow-x-scroll">
+      <article *ngFor="let forecast of (this.currentForecast$ | async)?.list || []"
+        class="bg-opacity-5 rounded-xl p-1 w-full text-center"
+        [ngClass]="{ 'bg-slate-100': this.isToday(forecast.dt) }">
+        <h2>{{ forecast.dt | dateFormat: 'ddd. DD/MM' }}</h2>
+        <app-weather-icon
+          [iconSize]="48"
+          [iconCode]="forecast.weather[0].icon"
+          [iconDescription]="forecast.weather[0].description">
+        </app-weather-icon>
+        <p class="w-full">
+          {{ forecast.main.temp_max | temperatureValue:this.ETemperatureUnit.Celsius | number:'1.0-0' | temperatureUnit:this.ETemperatureUnit.Celsius }}
+        </p>
+        <div class="relative h-40">
+          <p class="absolute w-full top-0">
+            <span class="icon-circle text-xs"></span>
+          </p>
+          <p class="absolute w-full bottom-0">
+            <span class="icon-circle text-xs"></span>
+          </p>
+        </div>
+        <p class="w-full">
+          {{ forecast.main.temp_min | temperatureValue:this.ETemperatureUnit.Celsius | number:'1.0-0' | temperatureUnit:this.ETemperatureUnit.Celsius }}
+        </p>
+        <span class="text-sm">{{ forecast.wind.speed | windValue:this.EWindUnit.KM_H | number:'1.0-0' | windUnit:this.EWindUnit.KM_H }}</span>
+      </article>
+    </section>
+  </div>
 </ion-content>
