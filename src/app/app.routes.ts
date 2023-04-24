@@ -11,8 +11,8 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'add-city',
-    loadComponent: () => import('./core/add-city/add-city.page').then( m => m.AddCityPage)
+    path: 'city',
+    loadComponent: () => import('./core/city/city.page').then( m => m.CityPage)
   },
   {
     path: 'forecast',

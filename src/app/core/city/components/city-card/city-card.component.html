@@ -1,0 +1,23 @@
+<article class="mb-3">
+  <div class="bg-slate-100 bg-opacity-20 rounded-xl p-5 w-full flex justify-between align-middle">
+    <div class="flex-grow">
+      <h2 class="font-bold">{{ this.city.name }}</h2>
+      <p>
+        <span>IQA 16</span>
+        <span>
+          {{ (this.currentWeather$ | async)[this.city.name]?.main.temp_max | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}
+        </span>
+        &nbsp;/&nbsp;
+        <span>
+          {{ (this.currentWeather$ | async)[this.city.name]?.main.temp_min | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}
+        </span>
+      </p>
+    </div>
+    <div class="text-4xl align-middle">
+      <span>{{ (this.currentWeather$ | async)[this.city.name]?.main.temp | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}</span>
+    </div>
+    <div>
+      <app-button-icon iconName="icon-trash" (click)="this.remove()"></app-button-icon>
+    </div>
+  </div>
+</article>

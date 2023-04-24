@@ -12,13 +12,13 @@ import { selectListCity } from 'src/app/shared/states/user/user.selector';
 import { City } from 'src/app/shared/models/city.interface';
 
 @Component({
-  selector: 'app-add-city',
-  templateUrl: './add-city.page.html',
-  styleUrls: ['./add-city.page.scss'],
+  selector: 'app-city',
+  templateUrl: './city.page.html',
+  styleUrls: ['./city.page.scss'],
   standalone: true,
   imports: [IonicModule, SharedModule, CityCardComponent]
 })
-export class AddCityPage implements OnInit {
+export class CityPage implements OnInit {
 
   public readonly listCity$ = this._store.pipe(select(selectListCity));
   public searchFormGroup: FormGroup;

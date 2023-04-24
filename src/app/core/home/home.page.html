@@ -1,7 +1,7 @@
 <ion-content [fullscreen]="true">
   <section id="container" class="p-5 flex flex-col justify-between">
     <header class="flex justify-between align-top">
-      <app-button-icon [iconName]="'icon-plus'" [routerLink]="'/add-city'"></app-button-icon>
+      <app-button-icon [iconName]="'icon-plus'" [routerLink]="'/city'"></app-button-icon>
       <div>
         <h1 class="text-4xl font-bold">{{ this.listCityLabel?.[this.idFocusedCity] }}</h1>
         <div *ngIf="(this.currentWeather$ | async | keyvalue) as listCurrentWeather" class="mt-2">
