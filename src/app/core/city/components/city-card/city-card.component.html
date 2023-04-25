@@ -1,23 +1,31 @@
 <article class="mb-3">
-  <div class="bg-slate-100 bg-opacity-20 rounded-xl p-5 w-full flex justify-between align-middle">
-    <div class="flex-grow">
-      <h2 class="font-bold">{{ this.city.name }}</h2>
-      <p>
-        <span>IQA 16</span>
-        <span>
-          {{ (this.currentWeather$ | async)[this.city.name]?.main.temp_max | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}
-        </span>
-        &nbsp;/&nbsp;
-        <span>
-          {{ (this.currentWeather$ | async)[this.city.name]?.main.temp_min | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}
-        </span>
-      </p>
-    </div>
-    <div class="text-4xl align-middle">
-      <span>{{ (this.currentWeather$ | async)[this.city.name]?.main.temp | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}</span>
-    </div>
-    <div>
+  <swiper-container *ngIf="(this.currentWeather$ | async | keyvalue)"
+    class="w-full" [slidesPerView]="'auto'" [loop]="false" [speed]="500" [spaceBetween]="10">
+    <swiper-slide class="bg-slate-100 bg-opacity-20 rounded-xl p-3 w-full flex justify-between align-middle">
+      <div class="flex-grow">
+        <h2 class="font-bold text-lg">{{ this.city.name }} ({{ this.city.country}})</h2>
+        <p class="flex justify-start align-center mr-3">
+          <app-weather-icon
+            [iconSize]="36"
+            [iconCode]="(this.currentWeather$ | async)[this.city.name]?.weather[0].icon"
+            [iconDescription]="(this.currentWeather$ | async)[this.city.name]?.weather[0].description">
+          </app-weather-icon>
+          <span class="mt-2">
+            {{ (this.currentWeather$ | async)[this.city.name]?.main.temp_max | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}
+            &nbsp;/&nbsp;
+            {{ (this.currentWeather$ | async)[this.city.name]?.main.temp_min | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}
+          </span>
+          <span class="mt-2"></span>
+          <span class="mt-2">
+            </span>
+        </p>
+      </div>
+      <div class="text-4xl my-auto mr-2">
+        <span>{{ (this.currentWeather$ | async)[this.city.name]?.main.temp | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}</span>
+      </div>
+    </swiper-slide>
+    <swiper-slide class="w-auto mt-4">
       <app-button-icon iconName="icon-trash" (click)="this.remove()"></app-button-icon>
-    </div>
-  </div>
+    </swiper-slide>
+  </swiper-container>
 </article>

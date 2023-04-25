@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, Input, OnInit, Output } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { Store, select } from '@ngrx/store';
 import { Subject } from 'rxjs';
@@ -7,12 +7,16 @@ import { AppState } from 'src/app/shared/models/state/app-state.interface';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { selectUserParams } from 'src/app/shared/states/user/user.selector';
 import { selectWeather } from 'src/app/shared/states/weather/weather.selector';
+import { register } from 'swiper/element/bundle';
+
+register();
 
 @Component({
   selector: 'app-city-card',
   templateUrl: './city-card.component.html',
   styleUrls: ['./city-card.component.scss'],
   standalone: true,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [IonicModule, SharedModule]
 })
 export class CityCardComponent implements OnInit {

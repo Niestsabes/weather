@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin, map, of } from 'rxjs';
 import { Weather, WeatherForecast } from '../../models/weather.interface';
-import { HttpClient } from '@angular/common/http';
 import { WEATHER_FORECAST_MOCK } from 'src/app/mock/weather-forecast.mock';
 import { WEATHER_MOCK } from 'src/app/mock/weather.mock';
 import { City, RecordCity } from '../../models/city.interface';
 import { WeatherUtilsService } from '../utils/weather-utils.service';
 import { appConfig } from 'src/config/config';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -20,11 +20,11 @@ export class WeatherApiService {
   ) { }
 
   public getCurrentWeatherByCity(cityName: string): Observable<Weather> {
-    // return this._http.get<Weather>(
-    //   `${environment.weatherApiUrl}/weather`,
-    //   { params: { q: cityName, appid: environment.weatherApiKey } }
-    // );
-    return of(WEATHER_MOCK)
+    return this._http.get<Weather>(
+      `${environment.weatherApiUrl}/weather`,
+      { params: { q: cityName, appid: environment.weatherApiKey } }
+    );
+    // return of(WEATHER_MOCK);
   }
 
   public getCurrentWeatherByCities(listCity: City[]): Observable<RecordCity<Weather>> {
@@ -34,11 +34,11 @@ export class WeatherApiService {
   }
 
   public getForecastByCity(cityName: string): Observable<WeatherForecast> {
-    // return this._http.get<WeatherForecast>(
-    //   `${environment.weatherApiUrl}/forecast`,
-    //   { params: { q: cityName, appid: environment.weatherApiKey } }
-    // );
-    return of(WEATHER_FORECAST_MOCK)
+    return this._http.get<WeatherForecast>(
+      `${environment.weatherApiUrl}/forecast`,
+      { params: { q: cityName, appid: environment.weatherApiKey } }
+    );
+    // return of(WEATHER_FORECAST_MOCK);
   }
 
 	public getGroupedForecastByCity(cityName: string): Observable<WeatherForecast> {

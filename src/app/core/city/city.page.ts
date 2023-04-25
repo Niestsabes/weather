@@ -10,6 +10,7 @@ import { AppState } from 'src/app/shared/models/state/app-state.interface';
 import { addCity, removeCity } from 'src/app/shared/states/user/user.action';
 import { selectListCity } from 'src/app/shared/states/user/user.selector';
 import { City } from 'src/app/shared/models/city.interface';
+import { loadWeather } from 'src/app/shared/states/weather/weather.action';
 
 @Component({
   selector: 'app-city',
@@ -32,6 +33,7 @@ export class CityPage implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this._store.dispatch(loadWeather());
     this.searchFormGroup = this._formBuilder.group({
       search: ['', Validators.required]
     });
