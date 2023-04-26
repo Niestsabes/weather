@@ -31,6 +31,15 @@ export class HomePage implements OnInit, OnDestroy {
   public latestUpdateTimestamp!: number;
   public idFocusedCity: number = 0;
   public listCityLabel!: string[];
+  public swiperPagination = {
+    el: '#swiper-pagination',
+    clickable: true,
+    renderBullet: (index: number, className: string) => {
+      // const iconClass = className.includes('active') ? 'icon-disk' : 'icon-circle';
+      return `<span class="text-slate-300 mx-1 text-sm ${className}"></span>`;
+    },
+  }
+  
   private _weatherSubscription!: SubscriptionLike;
 
   constructor(

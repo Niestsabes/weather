@@ -4,15 +4,7 @@
       <app-button-icon [iconName]="'icon-plus'" [routerLink]="'/city'"></app-button-icon>
       <div>
         <h1 class="text-4xl font-bold">{{ this.listCityLabel?.[this.idFocusedCity] }}</h1>
-        <div *ngIf="(this.currentWeather$ | async | keyvalue) as listCurrentWeather" class="mt-2">
-          <span *ngFor="let weather of listCurrentWeather; let index = index"
-            class="text-slate-300 mx-1 text-sm"
-            [class]="{
-              'icon-circle': this.idFocusedCity !== index,
-              'icon-disk': this.idFocusedCity === index
-            }">
-          </span>
-        </div>
+        <div id="swiper-pagination"></div>
       </div>
       <app-button-icon id="menu-popover-trigger" [iconName]="'icon-ellipsis-vertical'"></app-button-icon>
       <ion-popover trigger="menu-popover-trigger" [dismissOnSelect]="true">
@@ -27,7 +19,7 @@
       </ion-popover>
     </header>
     <swiper-container *ngIf="(this.currentWeather$ | async | keyvalue) as listCurrentWeather"
-      class="w-full flex-grow" [slidesPerView]="1" [loop]="false" [speed]="500" [spaceBetween]="20"
+      class="w-full flex-grow" [slidesPerView]="1" [loop]="false" [speed]="500" [spaceBetween]="20" [pagination]="this.swiperPagination"
       (slidechangetransitionend)="this.handleSlideChange($event)">
       <swiper-slide *ngFor="let weather of listCurrentWeather"
         class="flex flex-col justify-between">
