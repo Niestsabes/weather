@@ -32,9 +32,6 @@ export class CityCardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.currentWeather$.subscribe((weather) => {
-      console.log(weather);
-    });
   }
 
   public remove(): void {

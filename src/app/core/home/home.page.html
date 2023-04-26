@@ -6,7 +6,8 @@
         <h1 class="text-4xl font-bold">{{ this.listCityLabel?.[this.idFocusedCity] }}</h1>
         <div id="swiper-pagination"></div>
       </div>
-      <app-button-icon id="menu-popover-trigger" [iconName]="'icon-ellipsis-vertical'"></app-button-icon>
+      <app-button-icon [iconName]="'icon-ellipsis-vertical'" [routerLink]="'/parameter'"></app-button-icon>
+      <!-- <app-button-icon id="menu-popover-trigger" [iconName]="'icon-ellipsis-vertical'" [routerLink]="'/parameter'"></app-button-icon>
       <ion-popover trigger="menu-popover-trigger" [dismissOnSelect]="true">
         <ng-template>
           <ion-content>
@@ -16,7 +17,7 @@
             </ion-list>
           </ion-content>
         </ng-template>
-      </ion-popover>
+      </ion-popover> -->
     </header>
     <swiper-container *ngIf="(this.currentWeather$ | async | keyvalue) as listCurrentWeather"
       class="w-full flex-grow" [slidesPerView]="1" [loop]="false" [speed]="500" [spaceBetween]="20" [pagination]="this.swiperPagination"

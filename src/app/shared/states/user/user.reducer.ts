@@ -10,7 +10,6 @@ const initialState: AppUserParams = {
     windUnit: EWindUnit.KM_H,
     presureUnit: EPresureUnit.HPA,
     listCity: [
-        { name: 'New York', country: 'USA' },
         { name: 'Paris', country: 'France' }
     ]
 }
