@@ -49,12 +49,20 @@
       <ion-item-divider>
         <ion-label>&Agrave; propos</ion-label>
       </ion-item-divider>
-      <ion-item [button]="true">
+      <ion-item [button]="true" (click)="ratingModal.open()">
         <ion-label>Commentaires</ion-label>
       </ion-item>
-      <ion-item [button]="true">
-        <ion-label>Crédits</ion-label>
-      </ion-item> 
+      <p class="text-center px-5 mt-3 text-gray-500">
+        Données fournies par
+        <a class="text-blue-400" href="https://openweathermap.org/" target="_blank">OpenWeather</a>
+        et
+        <a class="text-blue-400" href="https://opencagedata.com/" target="_blank">OpenCage</a>
+      </p>
+      <p class="text-center px-5 mt-3 text-gray-500">
+        Application développée par <a class="text-blue-400">Sébastien Cayet</a>
+      </p>
     </ion-item-group>
   </form>
+
+  <app-parameter-rating #ratingModal></app-parameter-rating>
 </ion-content>

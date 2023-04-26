@@ -1,0 +1,23 @@
+<button #trigger id="modal-trigger" hidden></button>
+<ion-modal #modal trigger="modal-trigger" initialBreakpoint="0.25" [backdropDismiss]="true">
+  <ng-template>
+    <ion-content>
+      <form class="h-1/4 flex flex-col justify-between bg-slate-100 bg-opacity-5">
+        <ion-title class="mt-6 h-6 text-center">Aimez-vous l'appli météo ?</ion-title>
+        <div class="flex flex-grow justify-between align-center text-3xl text-yellow-400 w-48 mx-auto my-4">
+          <button *ngFor="let i of [1, 2, 3, 4, 5]" (click)="this.rating = i">
+            <span [class]="{ 'icon-star-regular': i > rating, 'icon-star': i <= rating }"></span>
+          </button>
+        </div>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="modal.dismiss()">Annuler</ion-button>
+          </ion-buttons>
+          <ion-buttons slot="end">
+            <ion-button class="text-blue-400" [disabled]="!this.rating" (click)="this.submit(); modal.dismiss()">Noter maintenant</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </form>
+    </ion-content>
+  </ng-template>
+</ion-modal>

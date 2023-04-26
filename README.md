@@ -1,6 +1,7 @@
 # Weather
 
 This project was generated with [Ionic Angular](https://ionicframework.com/docs/angular/your-first-app) version 7.0.0.
+Styling is powered by [Tailwind](https://tailwindcss.com) and [Ionic UI Components](https://ionicframework.com/docs/components).
 
 ## Setup
 
@@ -14,6 +15,8 @@ Follow the next steps to setup the project:
 ### Development Server
 
 Run ```ionic serve``` for a dev server. Navigate to ```http://localhost:8100```. The app will automatically reload if you change any of the source files.
+
+Run ```npx tailwindcss -i ./src/global.scss -o ./src/theme/tailwind.scss --watch``` an the root of the repository to build tailwind stylesheet. The stylesheet will automatically rebuild if you change any of the source files.
 
 ### Build
 

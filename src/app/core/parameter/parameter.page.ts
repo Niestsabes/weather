@@ -9,13 +9,14 @@ import { AppState } from 'src/app/shared/models/state/app-state.interface';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { editUserParams } from 'src/app/shared/states/user/user.action';
 import { selectUserParams } from 'src/app/shared/states/user/user.selector';
+import { ParameterRatingComponent } from './components/parameter-rating/parameter-rating.component';
 
 @Component({
   selector: 'app-parameter',
   templateUrl: './parameter.page.html',
   styleUrls: ['./parameter.page.scss'],
   standalone: true,
-  imports: [IonicModule, SharedModule, FormsModule]
+  imports: [IonicModule, SharedModule, FormsModule, ParameterRatingComponent]
 })
 export class ParameterPage implements OnInit, OnDestroy {
 
@@ -27,7 +28,7 @@ export class ParameterPage implements OnInit, OnDestroy {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _store: Store<AppState>
+    private _store: Store<AppState>,
   ) { }
 
   ngOnInit(): void {

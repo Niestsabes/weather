@@ -15,9 +15,6 @@
             &nbsp;/&nbsp;
             {{ (this.currentWeather$ | async)[this.city.name]?.main.temp_min | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}
           </span>
-          <span class="mt-2"></span>
-          <span class="mt-2">
-            </span>
         </p>
       </div>
       <div class="text-4xl my-auto mr-2">

@@ -41,6 +41,6 @@ export const WEATHER_MOCK: Weather = {
     },
     "timezone": 7200,
     "id": 2996943,
-    "name": "Arrondissement de Lyon",
+    "name": "Lyon",
     "cod": 200
 }

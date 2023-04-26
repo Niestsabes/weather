@@ -1,16 +1,16 @@
 export type OpenCageResponse = {
-    documentation: string,
-    licenses: OpenCageResponseLicense[],
-    rate: OpenCageResponseRate,
+    documentation?: string,
+    licenses?: OpenCageResponseLicense[],
+    rate?: OpenCageResponseRate,
     results: OpenCageResponseResult[],
     status: OpenCageResponseStatus,
-    stay_informed: {
+    stay_informed?: {
         blog: string,
         twitter: string
     },
-    thanks: string,
-    timestamp: OpenCageResponseTimestamp,
-    total_results: number
+    thanks?: string,
+    timestamp?: OpenCageResponseTimestamp,
+    total_results?: number
 }
 
 export type OpenCageResponseLicense = {
@@ -35,7 +35,7 @@ export type OpenCageResponseTimestamp = {
 }
 
 export type OpenCageResponseResult = {
-    annotations: {
+    annotations?: {
         DMS: {
             lat: string,
             lng: string
@@ -102,7 +102,7 @@ export type OpenCageResponseResult = {
             }
         }
     }
-    bounds: {
+    bounds?: {
         northeast: {
             lat: number,
             lng: number
@@ -113,25 +113,25 @@ export type OpenCageResponseResult = {
         }
     },
     components: {
-        _category: string,
-        _type: string,
-        city: string,
-        city_district: string,
-        continent: string,
-        country: string,
-        country_code: string,
-        county: string,
-        postcode: string,
-        road: string,
-        road_type: string,
-        state: string,
-        state_code: string,
-        suburb: string,
-        town: string,
-        village: string,
+        _category?: string,
+        _type?: string,
+        city?: string,
+        city_district?: string,
+        continent?: string,
+        country?: string,
+        country_code?: string,
+        county?: string,
+        postcode?: string,
+        road?: string,
+        road_type?: string,
+        state?: string,
+        state_code?: string,
+        suburb?: string,
+        town?: string,
+        village?: string,
         [key: string]: string
     },
-    confidence: number,
+    confidence?: number,
     formatted: string,
     geometry: {
         lat: number,
