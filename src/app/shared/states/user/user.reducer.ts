@@ -9,9 +9,7 @@ const initialState: AppUserParams = {
     temperatureUnit: ETemperatureUnit.Celsius,
     windUnit: EWindUnit.KM_H,
     presureUnit: EPresureUnit.HPA,
-    listCity: [
-        { name: 'Paris', country: 'France' }
-    ]
+    listCity: []
 }
 
 export const userReducer = createReducer(

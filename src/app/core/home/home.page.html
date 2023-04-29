@@ -19,37 +19,52 @@
         </ng-template>
       </ion-popover> -->
     </header>
-    <swiper-container *ngIf="(this.currentWeather$ | async | keyvalue) as listCurrentWeather"
-      class="w-full flex-grow" [slidesPerView]="1" [loop]="false" [speed]="500" [spaceBetween]="20" [pagination]="this.swiperPagination"
-      (slidechangetransitionend)="this.handleSlideChange($event)">
-      <swiper-slide *ngFor="let weather of listCurrentWeather"
-        class="flex flex-col justify-between">
-        <div></div>
-        <main>
-          <p class="flex justify-center align-top">
-            <span class="font-bold text-8xl text-white">
-              {{ weather.value.main?.temp | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' }}
-            </span>
-            <span class="font-bold text-3xl text-white mt-2 ml-1">
-              {{ '' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}
-            </span>
+    <ng-container *ngIf="(this.currentWeather$ | async | keyvalue) as listCurrentWeather;">
+      <swiper-container *ngIf="listCurrentWeather.length > 0; else noCityTemplate"
+        class="w-full flex-grow" [slidesPerView]="1" [loop]="false" [speed]="500" [spaceBetween]="20" [pagination]="this.swiperPagination"
+        (slidechangetransitionend)="this.handleSlideChange($event)">
+        <swiper-slide *ngFor="let weather of listCurrentWeather"
+          class="flex flex-col justify-between">
+          <div></div>
+          <main>
+            <p class="flex justify-center align-top">
+              <span class="font-bold text-8xl text-white">
+                {{ weather.value.main?.temp | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' }}
+              </span>
+              <span class="font-bold text-3xl text-white mt-2 ml-1">
+                {{ '' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}
+              </span>
+            </p>
+            <p class="text-slate-300 font-bold text-xl">
+              <span>
+                {{ weather.value.weather[0].description | titlecase }}
+              </span>
+              &nbsp;
+              <span>
+                {{ weather.value.main.temp_max | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}
+              </span>
+              &nbsp;/&nbsp;
+              <span>
+                {{ weather.value.main.temp_min | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}
+              </span>
+            </p>
+          </main>
+          <app-home-forecast [focusedCityName]="weather.key"></app-home-forecast>
+        </swiper-slide>
+      </swiper-container>
+      <ng-template #noCityTemplate>
+        <main class="flex-grow flex flex-col justify-center items-center">
+          <h2 class="text-center text-slate-300 font-bold text-xl">
+            Aucune ville enregistrée
+          </h2>
+          <p class="w-3/4 mt-3">
+            Cliquez sur le bouton d'ajout pour enregistrer une ville et obtenir ses données météo en temps réel.
           </p>
-          <p class="text-slate-300 font-bold text-xl">
-            <span>
-              {{ weather.value.weather[0].description | titlecase }}
-            </span>
-            &nbsp;
-            <span>
-              {{ weather.value.main.temp_max | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}
-            </span>
-            &nbsp;/&nbsp;
-            <span>
-              {{ weather.value.main.temp_min | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}
-            </span>
-          </p>
+          <app-button [routerLink]="'/city'" class="w-3/4" [iconName]="'icon-plus'">
+            <span>Ajouter une ville</span>
+          </app-button>
         </main>
-        <app-home-forecast [focusedCityName]="weather.key"></app-home-forecast>
-      </swiper-slide>
-    </swiper-container>
+      </ng-template>
+    </ng-container>
   </section>
 </ion-content>
