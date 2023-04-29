@@ -5,8 +5,9 @@ export type OpenCageResponse = {
     results: OpenCageResponseResult[],
     status: OpenCageResponseStatus,
     stay_informed?: {
-        blog: string,
-        twitter: string
+        blog?: string,
+        twitter?: string,
+        mastodon?: string,
     },
     thanks?: string,
     timestamp?: OpenCageResponseTimestamp,
@@ -36,38 +37,41 @@ export type OpenCageResponseTimestamp = {
 
 export type OpenCageResponseResult = {
     annotations?: {
-        DMS: {
+        DMS?: {
             lat: string,
             lng: string
         },
-        FIPS: {
+        FIPS?: {
             county: string,
             state: string
         },
-        MGRS: string,
-        Maidenhead: string,
-        Mercator: {
+        MGRS?: string,
+        Maidenhead?: string,
+        Mercator?: {
             x: number,
             y: number
         },
-        OSM: {
+        NUTS?: {   
+            [nuts: string]: {
+                code: string
+            }
+        },
+        OSM?: {
             edit_url: string,
             note_url: string,
             url: string
         },
-        UN_M49: {
+        UN_M49?: {
             regions: {
-                AMERICAS: string,
-                ASIA: string,
-                EUROPE: string,
-                WORLD: string
+                [region: string]: string
             },
             statistical_groupings: string[]
         },
-        callingcode: number,
-        currency: {
+        callingcode?: number,
+        currency?: {
             alternate_symbols: string[],
             decimal_mark: string,
+            disambiguate_symbol?: string,
             html_entity: string,
             iso_code: string,
             iso_numeric: string,
@@ -79,15 +83,15 @@ export type OpenCageResponseResult = {
             symbol_first: number,
             thousands_separator: string
         },
-        flag: string,
-        geohash: string,
-        qibla: number,
-        roadinfo: {
-            drive_on: string,
-            road: string,
-            speed_in: string
+        flag?: string,
+        geohash?: string,
+        qibla?: number,
+        roadinfo?: {
+            drive_on?: string,
+            road?: string,
+            speed_in?: string
         },
-        sun: {
+        sun?: {
             rise: {
                 apparent: number,
                 astronomical: number,
@@ -100,7 +104,18 @@ export type OpenCageResponseResult = {
                 civil: number,
                 nautical: number
             }
-        }
+        },
+        timezone?: {
+            name?: string,
+            now_in_dst?: number,
+            offset_sec?: number,
+            offset_string?: string,
+            short_name?: string
+        },
+        what3words?: {
+            words?: string
+        },
+        wikidata?: string
     }
     bounds?: {
         northeast: {
