@@ -2,7 +2,6 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild, CUSTOM_ELEMENTS_SC
 import { SharedModule } from 'src/app/shared/shared.module';
 import { IonicModule } from '@ionic/angular';
 import { ETemperatureUnit } from 'src/app/shared/enums/temparature-unit.enum';
-import { HomeForecastComponent } from "./components/home-forecast/home-forecast.component";
 import { select, Store } from '@ngrx/store';
 import { selectWeather } from 'src/app/shared/states/weather/weather.selector';
 import { AppState } from 'src/app/shared/models/state/app-state.interface';
@@ -10,8 +9,21 @@ import { loadWeather } from 'src/app/shared/states/weather/weather.action';
 import { selectUserParams } from 'src/app/shared/states/user/user.selector';
 import { SubscriptionLike } from 'rxjs';
 import { register } from 'swiper/element/bundle';
+import { HomeForecastComponent } from "./components/home-forecast/home-forecast.component";
+import { HomeShortForecastComponent } from './components/home-short-forecast/home-short-forecast.component';
+import { HomeSunsetComponent } from './components/home-sunset/home-sunset.component';
+import { HomeWeatherDetailComponent } from './components/home-weather-detail/home-weather-detail.component';
+import { HomeWindComponent } from './components/home-wind/home-wind.component';
 
 register();
+
+const components = [
+  HomeForecastComponent,
+  HomeShortForecastComponent,
+  HomeSunsetComponent,
+  HomeWeatherDetailComponent,
+  HomeWindComponent
+]
 
 @Component({
     selector: 'app-home',
@@ -19,7 +31,7 @@ register();
     styleUrls: ['home.page.scss'],
     standalone: true,
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    imports: [IonicModule, SharedModule, HomeForecastComponent]
+    imports: [IonicModule, SharedModule, ...components]
 })
 export class HomePage implements OnInit, OnDestroy {
 
@@ -35,7 +47,6 @@ export class HomePage implements OnInit, OnDestroy {
     el: '#swiper-pagination',
     clickable: true,
     renderBullet: (index: number, className: string) => {
-      // const iconClass = className.includes('active') ? 'icon-disk' : 'icon-circle';
       return `<span class="text-slate-300 mx-1 text-sm ${className}"></span>`;
     },
   }

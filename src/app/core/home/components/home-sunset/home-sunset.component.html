@@ -1,0 +1,13 @@
+<article class="bg-slate-100 bg-opacity-20 rounded-xl p-3 h-full w-full">
+  <h2 class="text-left font-bold" hidden>Horaires soleil</h2>
+  <ng-container *ngIf="weather?.sys">
+    <p class="text-left">
+      <span>{{ weather?.sys?.sunrise | dateFormat:'HH:mm' }}</span>
+      <span class="text-gray-300 ml-1">Lever</span>
+    </p>
+    <p class="text-left">
+      <span>{{ weather?.sys?.sunset | dateFormat:'HH:mm' }}</span>
+      <span class="text-gray-300 ml-1">Coucher</span>
+    </p>
+  </ng-container>
+</article>

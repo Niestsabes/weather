@@ -7,7 +7,7 @@ import { ETemperatureUnit } from '../../enums/temparature-unit.enum';
 export class TemperatureValuePipe implements PipeTransform {
 
   transform(value: number|undefined, toUnit: ETemperatureUnit, fromUnit: ETemperatureUnit = ETemperatureUnit.Kelvin): number {
-    if (value === undefined) {
+    if (value == undefined) {
       return 0;
     }
     

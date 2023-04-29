@@ -7,7 +7,7 @@ import { EWindUnit } from '../../enums/wind-unit.enum';
 export class WindValuePipe implements PipeTransform {
 
   transform(value: number|undefined, toUnit: EWindUnit, fromUnit: EWindUnit = EWindUnit.M_S): number|undefined {
-    if (value === undefined) {
+    if (value == undefined) {
       return 0;
     }
 

@@ -1,0 +1,19 @@
+<article class="bg-slate-100 bg-opacity-20 rounded-xl p-3 h-full w-full">
+  <h2 class="text-left font-bold" hidden>Vent</h2>
+  <div class="flex align-middle" *ngIf="weather?.wind">
+    <div class="flex-grow">
+      <p class="text-left">{{ weather.wind.deg | windDirection }}</p>
+      <p class="text-left">{{ weather.wind.speed | windValue:(this.userSettings$ | async).windUnit | number:'1.0-0' | windUnit:(this.userSettings$ | async).windUnit }}</p>
+    </div>
+    <div class="relative ml-2 w-12 h-12 rounded-full border-gray-300 border-2">
+      <span class="absolute text-xs text-gray-300 top-0 left-0 w-full text-center">N</span>
+      <span class="absolute text-xs text-gray-300 top-1 left-0 h-full align-middle leading-10">O</span>
+      <span class="absolute text-xs text-gray-300 top-1 right-0 h-full align-middle leading-10">E</span>
+      <span class="absolute text-xs text-gray-300 bottom-0 left-0 w-full text-center">S</span>
+      <div class="absolute origin-center top-3 left-3 w-6 h-6 flex justify-center align-middle"
+        [style]="{ transform: 'rotate(' + (weather.wind.deg - 45) + 'deg)' }">
+        <span class="icon-location-arrow"></span>
+      </div>
+    </div>
+  </div>
+</article>
