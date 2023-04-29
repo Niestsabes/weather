@@ -1,5 +1,5 @@
 {
-  "name": "weather",
+  "name": "Météo",
   "integrations": {
     "capacitor": {}
   },

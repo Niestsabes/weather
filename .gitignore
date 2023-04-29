@@ -16,17 +16,19 @@ log.txt
 /.versions
 /coverage
 
-NOTES.md
-
 # Environment
 /src/environments/*
 !/src/environments/environment.dist.ts
+NOTES.md
 
 # Ionic
 /.ionic
 /www
 /platforms
 /plugins
+
+#Android
+android
 
 # Compiled output
 /dist

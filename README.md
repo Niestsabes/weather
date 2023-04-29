@@ -6,6 +6,9 @@ Styling is powered by [Tailwind](https://tailwindcss.com) and [Ionic UI Componen
 ## Setup
 
 Follow the next steps to setup the project:
+- Install [Node.js](https://nodejs.org/en/download/).
+- Install [Angular CLI](https://angular.io/cli) globally: ```npm install -g @angular/cli```.
+- Install [Ionic CLI](https://ionicframework.com/docs/intro/cli) globally: ```npm install -g @ionic/cli```.
 - Sign up and generate your API key on [OpenWeather](https://openweathermap.org/api).
 - In the project, duplicate the ```src/environment/environment.dist.ts``` twice. Rename them ```src/environment/environment.ts``` and ```src/environment/environment.prod.ts```.
 - In both created files, replace ```weatherApiKey``` value by your OpenWeather API.
@@ -21,6 +24,15 @@ Run ```npx tailwindcss -i ./src/global.scss -o ./src/theme/tailwind.scss --watch
 ### Build
 
 Run ```ionic build``` to build the project. The build artifacts will be stored in the ```dist/``` directory. Use the ```--prod``` flag for a production build.
+
+### Build Android App
+
+- Install [Android Studio](https://developer.android.com/studio)
+- Install the Android SDK and build tools via Android Studio's SDK Manager.
+- Run ```ionic cap add android``` to add the Android platform to your project.
+- Run ```ionic cap sync``` to sync the Ionic app with the native project.
+- Run ```ionic cap open android``` to open the native Android project in Android Studio.
+- In Android Studio, build the project to test it on a device or emulator.
 
 ## Running tests
 
