@@ -35,8 +35,6 @@ const components = [
 })
 export class HomePage implements OnInit, OnDestroy {
 
-  @ViewChild('currentWeatherCard') currentWeatherCard: ElementRef;
-
   public readonly ETemperatureUnit = ETemperatureUnit;
   public readonly currentWeather$ = this._store.pipe(select(selectWeather));
   public readonly userSettings$ = this._store.pipe(select(selectUserParams));

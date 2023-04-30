@@ -21,13 +21,14 @@ export class HomeForecastComponent implements OnInit {
   public readonly imageBaseUrl = 'http://openweathermap.org/img/wn/';
   public readonly imageExtension = '.png';
   public readonly imageSize = 32;
-  public readonly NbDays = 3;
+  public readonly nbDisplayedDays = 3;
   public readonly currentForecast$ = this._store.pipe(select(selectWeatherForecast));
   public readonly userSettings$ = this._store.pipe(select(selectUserParams));
+
   @Input() focusedCityName!: string;
 
   constructor(
-    private _store: Store<AppState>,
+    private _store: Store<AppState>
   ) {}
 
   ngOnInit(): void {

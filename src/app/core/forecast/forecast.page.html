@@ -19,7 +19,7 @@
   </ion-header>
   <div class="py-3">
     <section class="flex justify-between overflow-x-scroll">
-      <article *ngFor="let forecast of (this.currentForecast$ | async)?.[this.focusedCityName]?.list || []"
+      <article *ngFor="let forecast of (this.currentForecast$ | async | forecastGroup:this.focusedCityName:this.nbDisplayedDays)"
         class="bg-opacity-5 rounded-xl p-1 w-full text-center"
         [ngClass]="{ 'bg-slate-100': this.isToday(forecast.dt) }">
         <h2>{{ forecast.dt | dateFormat: 'ddd. DD/MM' }}</h2>
@@ -42,7 +42,7 @@
         <p class="w-full">
           {{ forecast.main.temp_min | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}
         </p>
-        <span class="text-sm">{{ forecast.wind.speed | windValue:(this.userSettings$ | async).windUnit | number:'1.0-0' | windUnit:(this.userSettings$ | async).windUnit }}</span>
+        <span class="text-sm whitespace-nowrap">{{ forecast.wind.speed | windValue:(this.userSettings$ | async).windUnit | number:'1.0-0' | windUnit:(this.userSettings$ | async).windUnit }}</span>
       </article>
     </section>
   </div>

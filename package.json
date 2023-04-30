@@ -1,7 +1,7 @@
 {
   "name": "weather-app",
   "description": "A mobile weather application.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Niestsabes",
   "homepage": "https://ionicframework.com/",
   "scripts": {

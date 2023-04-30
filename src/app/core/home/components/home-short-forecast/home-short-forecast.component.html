@@ -1,3 +1,20 @@
 <article class="bg-slate-100 bg-opacity-20 rounded-xl p-3 h-full w-full">
-  <h2 class="text-left font-bold"><span class="icon-clock mr-2"></span>Prévisions sur 24 heures</h2>
+  <h2 class="text-left font-bold">
+    <span class="icon-clock mr-2"></span>
+    <span>Prévisions sur 24 heures</span>
+  </h2>
+  <div class="w-100 overflow-x-scroll flex">
+    <ul *ngIf="this.cityName && (this.currentForecast$ | async)[this.cityName] as cityForecast"
+      class="flex justify-start">
+      <li *ngFor="let forecast of cityForecast.list.slice(0, this.NB_FORECAST_VALUES); let i = index"
+        class="mx-1">
+        <app-weather-icon
+          [iconCode]="forecast.weather[0].icon"
+          [iconDescription]="forecast.weather[0].description">
+        </app-weather-icon>
+        <p class="text-sm whitespace-nowrap">{{ forecast.main?.temp | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}</p>
+        <p class="text-sm">{{ forecast.dt | dateFormat: 'HH:mm' }}</p>
+      </li>
+    </ul>
+  </div>
 </article>

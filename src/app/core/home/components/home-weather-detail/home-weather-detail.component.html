@@ -1,17 +1,20 @@
 <article class="bg-slate-100 bg-opacity-20 rounded-xl p-3 h-full w-full">
-  <h2 class="text-left font-bold" hidden>Détails</h2>
+  <h2 class="text-left font-bold">  
+    <span class="icon-tags mr-2"></span>
+    <span>Détails</span>
+  </h2>
   <ng-container *ngIf="weather">
     <p class="flex justify-between">
-      <span class="text-left text-gray-300">Humidité</span>
-      <span class="text-right">{{ weather.main.humidity }}%</span>
+      <span class="text-left text-sm text-gray-300">Humidité</span>
+      <span class="text-right text-sm">{{ weather.main.humidity }}%</span>
     </p>
     <p class="flex justify-between">
-      <span class="text-left text-gray-300">Ressenti</span>
-      <span class="text-right">{{ weather.main.feels_like | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}</span>
+      <span class="text-left text-sm text-gray-300">Ressenti</span>
+      <span class="text-right text-sm">{{ weather.main.feels_like | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' | temperatureUnit:(this.userSettings$ | async).temperatureUnit }}</span>
     </p>
     <p class="flex justify-between">
-      <span class="text-left text-gray-300">Pression</span>
-      <span class="text-right">{{ weather.main.pressure | presureValue:(this.userSettings$ | async).presureUnit| number:'1.0-0' | presureUnit:(this.userSettings$ | async).presureUnit }}</span>
+      <span class="text-left text-sm text-gray-300">Pression</span>
+      <span class="text-right text-sm">{{ weather.main.pressure | presureValue:(this.userSettings$ | async).presureUnit| number:'1.0-0' | presureUnit:(this.userSettings$ | async).presureUnit }}</span>
     </p>
   </ng-container>
 </article>

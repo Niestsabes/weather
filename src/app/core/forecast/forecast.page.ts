@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { select, Store } from '@ngrx/store';
-import { map } from 'rxjs';
 import { ETemperatureUnit } from 'src/app/shared/enums/temparature-unit.enum';
 import { EWindUnit } from 'src/app/shared/enums/wind-unit.enum';
 import { AppState } from 'src/app/shared/models/state/app-state.interface';
@@ -22,6 +21,7 @@ export class ForecastPage implements OnInit {
 
   public readonly ETemperatureUnit = ETemperatureUnit;
   public readonly EWindUnit = EWindUnit;
+  public readonly nbDisplayedDays = 5;
   public readonly currentWeather$ = this._store.pipe(select(selectWeather));
   public readonly currentForecast$ = this._store.pipe(select(selectWeatherForecast));
   public readonly userSettings$ = this._store.pipe(select(selectUserParams));

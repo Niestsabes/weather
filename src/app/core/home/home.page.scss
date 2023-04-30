@@ -34,3 +34,11 @@
   color: white;
   font-variant-position: super;
 }
+
+.weather-detail-grid {
+  grid-template-columns: 1fr 1fr
+}
+
+.weather-main {
+  min-height: 60vh;
+}

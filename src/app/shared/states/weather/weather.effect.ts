@@ -43,7 +43,7 @@ export class WeatherEffect {
 			ofType(loadWeatherForecast),
 			withLatestFrom(this._store.pipe(select(selectWeatherForecastData))),
 			filter(([_, weatherForecastData]) => {
-				return appConfig.forecastDays > 0 && weatherForecastData.status !== ELoadingStatus.Success;
+				return appConfig.nbDaysShortForecast > 0 && weatherForecastData.status !== ELoadingStatus.Success;
 			}),
 			withLatestFrom(this._store.pipe(select(selectListCity))),
 			switchMap(([_, listCity]) => this._weatherApiService.getGroupedForcastByCities(listCity)),

@@ -3,7 +3,10 @@
     <thead>
       <tr>
         <th scpoe="col" class="text-left" colspan="3">
-          <h2><span class="icon-calendar mr-2"></span>Prévisions</h2>
+          <h2>
+            <span class="icon-calendar mr-2"></span>
+            <span>Prévisions</span>
+          </h2>
         </th>
         <th scpoe="col" class="text-right">
           <a>Détails</a>
@@ -11,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let forecast of (this.currentForecast$ |async)?.[this.focusedCityName]?.list || [] | slice: 0:this.NbDays">
+      <tr *ngFor="let forecast of (this.currentForecast$ | async | forecastGroup:this.focusedCityName:this.nbDisplayedDays)">
         <td class="text-center">
           <app-weather-icon
             [iconCode]="forecast.weather[0].icon"

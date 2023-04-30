@@ -24,8 +24,7 @@
         class="w-full flex-grow" [slidesPerView]="1" [loop]="false" [speed]="500" [spaceBetween]="20" [pagination]="this.swiperPagination"
         (slidechangetransitionend)="this.handleSlideChange($event)">
         <swiper-slide *ngFor="let weather of listCurrentWeather"
-          class="flex flex-col justify-between">
-          <div></div>
+          class="flex flex-col justify-between overflow-y-scroll">
           <main>
             <p class="flex justify-center align-top">
               <span class="font-bold text-8xl text-white">
@@ -49,9 +48,9 @@
               </span>
             </p>
           </main>
-          <aside class="grid grid-flow-row grid-col-2 gap-4">
-            <app-home-forecast class="col-span-2" [focusedCityName]="weather.key"></app-home-forecast>
-            <app-home-short-forecast class="col-span-2"></app-home-short-forecast>
+          <aside class="weather-detail-grid grid grid-flow-row grid-col-2 gap-4">
+            <app-home-forecast class="col-span-2" [focusedCityName]="weather.key" #homeForecast></app-home-forecast>
+            <app-home-short-forecast class="col-span-2" [cityName]="weather.key"></app-home-short-forecast>
             <app-home-weather-detail class="row-span-2" [weather]="weather.value"></app-home-weather-detail>
             <app-home-wind [weather]="weather.value"></app-home-wind>
             <app-home-sunset [weather]="weather.value"></app-home-sunset>

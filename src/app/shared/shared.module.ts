@@ -14,6 +14,7 @@ import { WeatherIconComponent } from "./components/weather/weather-icon/weather-
 import { PresureUnitPipe } from './pipes/presure/presure-unit.pipe';
 import { PresureValuePipe } from './pipes/presure/presure-value.pipe';
 import { WindDirectionPipe } from './pipes/wind/wind-direction.pipe';
+import { ForecastGroupPipe } from './pipes/forecast/forecast-group.pipe';
 
 const modules = [
     CommonModule,
@@ -24,6 +25,7 @@ const modules = [
 ];
 const pipes = [
     DateFormatPipe,
+    ForecastGroupPipe,
     PresureUnitPipe,
     PresureValuePipe,
     TemperatureUnitPipe,
@@ -37,6 +39,6 @@ const components = [ButtonComponent, ButtonIconComponent, WeatherIconComponent]
 @NgModule({
     imports: [...components, ...modules],
     exports: [...components, ...modules, ...pipes],
-    declarations: [...pipes, PresureUnitPipe, PresureValuePipe, WindDirectionPipe]
+    declarations: [...pipes, PresureUnitPipe, PresureValuePipe, WindDirectionPipe, ForecastGroupPipe]
 })
 export class SharedModule {}

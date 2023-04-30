@@ -24,7 +24,6 @@ export class WeatherApiService {
       `${environment.weatherApiUrl}/weather`,
       { params: { q: cityName, appid: environment.weatherApiKey } }
     );
-    // return of(WEATHER_MOCK);
   }
 
   public getCurrentWeatherByCities(listCity: City[]): Observable<RecordCity<Weather>> {
@@ -38,13 +37,12 @@ export class WeatherApiService {
       `${environment.weatherApiUrl}/forecast`,
       { params: { q: cityName, appid: environment.weatherApiKey } }
     );
-    // return of(WEATHER_FORECAST_MOCK);
   }
 
 	public getGroupedForecastByCity(cityName: string): Observable<WeatherForecast> {
 		return this.getForecastByCity(cityName).pipe(
 			map(forecast => {
-				forecast.list = this._weatherUtilsService.groupWeatherByDate(forecast.list).slice(0, appConfig.forecastDays);
+				// forecast.list = this._weatherUtilsService.groupWeatherByDate(forecast.list).slice(0, appConfig.forecastDays);
 				return forecast;
 			})
 		);
