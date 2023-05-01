@@ -25,7 +25,7 @@
         (slidechangetransitionend)="this.handleSlideChange($event)">
         <swiper-slide *ngFor="let weather of listCurrentWeather"
           class="flex flex-col justify-between overflow-y-scroll">
-          <main>
+          <main class="flex flex-col justify-center">
             <p class="flex justify-center align-top">
               <span class="font-bold text-8xl text-white">
                 {{ weather.value.main?.temp | temperatureValue:(this.userSettings$ | async).temperatureUnit | number:'1.0-0' }}
@@ -60,13 +60,13 @@
       <ng-template #noCityTemplate>
         <main class="flex-grow flex flex-col justify-center items-center">
           <h2 class="text-center text-slate-300 font-bold text-xl">
-            Aucune ville enregistrée
+            {{ 'home.main.noCityRegistered.title' | translate }}
           </h2>
           <p class="w-3/4 mt-3">
-            Cliquez sur le bouton d'ajout pour enregistrer une ville et obtenir ses données météo en temps réel.
+            {{ 'home.main.noCityRegistered.description' | translate }}
           </p>
           <app-button [routerLink]="'/city'" class="w-3/4" [iconName]="'icon-plus'">
-            <span>Ajouter une ville</span>
+            <span>{{ 'home.main.noCityRegistered.action' | translate }}</span>
           </app-button>
         </main>
       </ng-template>

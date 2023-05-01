@@ -7,12 +7,15 @@ import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
 import { SharedModule } from './app/shared/shared.module';
-import { WeatherEffect } from './app/shared/states/weather/weather.effect';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreModule } from '@ngrx/store';
 import { weatherForecastReducer, weatherReducer } from './app/shared/states/weather/weather.reducer';
 import { userReducer } from './app/shared/states/user/user.reducer';
 import { UserEffect } from './app/shared/states/user/user.effect';
+import { WeatherEffect } from './app/shared/states/weather/weather.effect';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 if (environment.production) {
   enableProdMode();
@@ -29,6 +32,13 @@ bootstrapApplication(AppComponent, {
       weatherForecast: weatherForecastReducer
     })),
     importProvidersFrom(EffectsModule.forRoot([UserEffect, WeatherEffect])),
+    importProvidersFrom(TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (http: HttpClient) => new TranslateHttpLoader(http),
+        deps: [HttpClient]
+      }
+    })),
     provideRouter(routes),
   ],
 });

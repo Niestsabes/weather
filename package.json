@@ -1,7 +1,7 @@
 {
   "name": "weather-app",
   "description": "A mobile weather application.",
-  "version": "1.0.1",
+  "version": "1.2.0",
   "author": "Niestsabes",
   "homepage": "https://ionicframework.com/",
   "scripts": {
@@ -29,6 +29,8 @@
     "@ionic/angular": "^7.0.0",
     "@ngrx/effects": "^15.4.0",
     "@ngrx/store": "^15.4.0",
+    "@ngx-translate/core": "^14.0.0",
+    "@ngx-translate/http-loader": "^7.0.0",
     "ionicons": "^7.0.0",
     "moment": "^2.29.4",
     "rxjs": "~7.5.0",

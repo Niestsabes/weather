@@ -1,0 +1,69 @@
+{
+    "city": {
+      "title": "都市を登録する",
+      "search": "都市を検索する..."
+    },
+    "home": {
+        "main": {
+            "noCityRegistered": {
+                "title": "都市が登録されていません",
+                "description": "都市を登録し、リアルタイムの天気情報を取得するには、以下のボタンをクリックしてください。",
+                "action": "都市を登録する"
+            },
+            "forecast": {
+                "title": "予報",
+                "details": "詳細",
+                "forecast": "{{val1}}日間の予報"
+            },
+            "shortForecast": {
+                "title": "24時間の予報"
+            },
+            "weatherDetail": {
+                "title": "詳細",
+                "humidity": "湿度",
+                "fellLike": "体感気温",
+                "presure": "気圧"
+            },
+            "windDetail": {
+                "title": "風",
+                "windDirectionValue": {
+                    "north": "北",
+                    "northEast": "北東",
+                    "east": "東",
+                    "southEast": "南東",
+                    "south": "南",
+                    "southWest": "南西",
+                    "west": "西",
+                    "northWest": "北西"
+                }
+            },
+            "sunDetail": {
+                "title": "日光",
+                "sunrise": "日の出",
+                "sunset": "日の入り"
+            }
+        }
+    },
+    "parameters": {
+        "title": "パラメータ",
+        "form": {
+            "units": {
+                "title": "測定単位",
+                "temperature": "温度",
+                "presure": "気圧",
+                "wind": "風速"
+            },
+            "about": {
+                "title": "アプリについて",
+                "comments": "コメント",
+                "commentsDescription": "このアプリケーションをお気に入りいただけましたか？",
+                "dataFrom": "<a class='text-blue-400' href='{{val1}}' target='_blank'>OpenWeather</a>と<a class='text-blue-400' href='{{val2}}' target='_blank'>OpenCage</a>APIからデータを取得しています。",
+                "developedBy": "<a class='text-blue-400' href='{{val1}}' target='_blank'>Sébastien Cayet</a>によって開発されたアプリ"
+            }
+        }
+    },
+    "utils": {
+        "cancel": "キャンセル",
+        "note": "今すぐノートを取る！"
+    }
+}

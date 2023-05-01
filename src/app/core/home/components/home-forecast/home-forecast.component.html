@@ -5,16 +5,16 @@
         <th scpoe="col" class="text-left" colspan="3">
           <h2>
             <span class="icon-calendar mr-2"></span>
-            <span>Prévisions</span>
+            <span>{{ 'home.main.forecast.title' | translate }}</span>
           </h2>
         </th>
         <th scpoe="col" class="text-right">
-          <a>Détails</a>
+          <a>{{ 'home.main.forecast.details' | translate }}</a>
         </th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let forecast of (this.currentForecast$ | async | forecastGroup:this.focusedCityName:this.nbDisplayedDays)">
+      <tr *ngFor="let forecast of (this.currentForecast$ | async | forecastGroup:this.focusedCityName:this.APP_CONFIG.nbDaysShortForecast)">
         <td class="text-center">
           <app-weather-icon
             [iconCode]="forecast.weather[0].icon"
@@ -32,6 +32,6 @@
     </tbody>
   </table>
   <app-button [routerLink]="'/forecast'">
-    <span>Prévisions sur 5 jours</span>
+    <span>{{ 'home.main.forecast.forecast' | translate:{'val1': this.APP_CONFIG.nbDaysLongForecast} }}</span>
   </app-button>
 </article>

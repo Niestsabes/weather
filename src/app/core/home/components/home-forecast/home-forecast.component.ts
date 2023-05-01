@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { selectUserParams } from 'src/app/shared/states/user/user.selector';
 import { loadWeatherForecast } from 'src/app/shared/states/weather/weather.action';
 import { selectWeatherForecast } from 'src/app/shared/states/weather/weather.selector';
+import { appConfig } from 'src/config/config';
 
 @Component({
   selector: 'app-home-forecast',
@@ -22,6 +23,7 @@ export class HomeForecastComponent implements OnInit {
   public readonly imageExtension = '.png';
   public readonly imageSize = 32;
   public readonly nbDisplayedDays = 3;
+  public readonly APP_CONFIG = appConfig;
   public readonly currentForecast$ = this._store.pipe(select(selectWeatherForecast));
   public readonly userSettings$ = this._store.pipe(select(selectUserParams));
 

@@ -3,7 +3,7 @@
   <ng-template>
     <ion-content>
       <form class="h-1/4 flex flex-col justify-between bg-slate-100 bg-opacity-5">
-        <ion-title class="mt-6 h-6 text-center">Aimez-vous l'appli météo ?</ion-title>
+        <ion-title class="mt-6 h-6 text-center">{{ 'parameters.form.about.commentsDescription' | translate }}</ion-title>
         <div class="flex flex-grow justify-between align-center text-3xl text-yellow-400 w-48 mx-auto my-4">
           <button *ngFor="let i of [1, 2, 3, 4, 5]" (click)="this.rating = i">
             <span [class]="{ 'icon-star-regular': i > rating, 'icon-star': i <= rating }"></span>
@@ -11,10 +11,10 @@
         </div>
         <ion-toolbar>
           <ion-buttons slot="start">
-            <ion-button (click)="modal.dismiss()">Annuler</ion-button>
+            <ion-button (click)="modal.dismiss()">{{ 'utils.cancel' | translate }}</ion-button>
           </ion-buttons>
           <ion-buttons slot="end">
-            <ion-button class="text-blue-400" [disabled]="!this.rating" (click)="this.submit(); modal.dismiss()">Noter maintenant</ion-button>
+            <ion-button class="text-blue-400" [disabled]="!this.rating" (click)="this.submit(); modal.dismiss()">{{ 'utils.note' | translate }}</ion-button>
           </ion-buttons>
         </ion-toolbar>
       </form>

@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, forkJoin, map, of } from 'rxjs';
+import { Observable, forkJoin, map } from 'rxjs';
 import { Weather, WeatherForecast } from '../../models/weather.interface';
-import { WEATHER_FORECAST_MOCK } from 'src/app/mock/weather-forecast.mock';
-import { WEATHER_MOCK } from 'src/app/mock/weather.mock';
 import { City, RecordCity } from '../../models/city.interface';
-import { WeatherUtilsService } from '../utils/weather-utils.service';
-import { appConfig } from 'src/config/config';
 import { environment } from 'src/environments/environment';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'
@@ -16,13 +13,13 @@ export class WeatherApiService {
 
   constructor(
     private _http: HttpClient,
-    private _weatherUtilsService: WeatherUtilsService
+    private _translate: TranslateService
   ) { }
 
   public getCurrentWeatherByCity(cityName: string): Observable<Weather> {
     return this._http.get<Weather>(
       `${environment.weatherApiUrl}/weather`,
-      { params: { q: cityName, appid: environment.weatherApiKey } }
+      { params: { q: cityName, appid: environment.weatherApiKey, lang: this._translate.currentLang } }
     );
   }
 
@@ -35,14 +32,13 @@ export class WeatherApiService {
   public getForecastByCity(cityName: string): Observable<WeatherForecast> {
     return this._http.get<WeatherForecast>(
       `${environment.weatherApiUrl}/forecast`,
-      { params: { q: cityName, appid: environment.weatherApiKey } }
+      { params: { q: cityName, appid: environment.weatherApiKey, lang: this._translate.currentLang } }
     );
   }
 
 	public getGroupedForecastByCity(cityName: string): Observable<WeatherForecast> {
 		return this.getForecastByCity(cityName).pipe(
 			map(forecast => {
-				// forecast.list = this._weatherUtilsService.groupWeatherByDate(forecast.list).slice(0, appConfig.forecastDays);
 				return forecast;
 			})
 		);

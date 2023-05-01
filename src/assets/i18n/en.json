@@ -1,0 +1,69 @@
+{
+    "city": {
+        "title": "Register cities",
+        "search": "Search cities..."
+    },
+    "home": {
+        "main": {
+            "noCityRegistered": {
+                "title": "No city registered",
+                "description": "Click on the button bellow to register a city and retrieve its realtime weather data.",
+                "action": "Register city"
+            },
+            "forecast": {
+                "title": "Forecast",
+                "details": "Details",
+                "forecast": "{{val1}}-day Forecast"
+            },
+            "shortForecast": {
+                "title": "24-hour Forecast"
+            },
+            "weatherDetail": {
+                "title": "Details",
+                "humidity": "Humidity",
+                "fellLike": "Fells like",
+                "presure": "Presure"
+            },
+            "windDetail": {
+                "title": "Wind",
+                "windDirectionValue": {
+                    "north": "North",
+                    "northEast": "North-East",
+                    "east": "East",
+                    "southEast": "South-East",
+                    "south": "South",
+                    "southWest": "South-West",
+                    "west": "West",
+                    "northWest": "North-West"
+                }
+            },
+            "sunDetail": {
+                "title": "Sun",
+                "sunrise": "Sunrise",
+                "sunset": "Sunset"
+            }
+        }
+    },
+    "parameters": {
+        "title": "Parameters",
+        "form": {
+            "units": {
+                "title": "Measure units",
+                "temperature": "Temperature",
+                "presure": "Presure",
+                "wind": "Wind speed"
+            },
+            "about": {
+                "title": "About",
+                "comments": "Comments",
+                "commentsDescription": "Do you like this application ?",
+                "dataFrom": "Data from <a class='text-blue-400' href='{{val1}}' target='_blank'>OpenWeather</a> and <a class='text-blue-400' href='{{val2}}' target='_blank'>OpenCage</a> APIs.",
+                "developedBy": "App developed by <a class='text-blue-400' href='{{val1}}' target='_blank'>Sébastien Cayet</a>"
+            }
+        }
+    },
+    "utils": {
+        "cancel": "Cancel",
+        "note": "Note now!"
+    }
+}

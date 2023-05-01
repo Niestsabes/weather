@@ -9,7 +9,7 @@ export class WindDirectionPipe implements PipeTransform {
     if (angle === undefined) {
       return '';
     }
-    const directions = ['Nord', 'Nord-Est', 'Est', 'Sud-Est', 'Sud', 'Sud-Ouest', 'Ouest', 'Nord-Ouest'];
+    const directions = ['north', 'northEast', 'east', 'southEast', 'south', 'southWest', 'west', 'northWest'];
     const index = Math.round(angle / 45) % 8;
     return directions[index];
   }

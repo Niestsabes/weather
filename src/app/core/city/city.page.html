@@ -6,7 +6,7 @@
       </ion-button>
     </ion-buttons>
     <ion-title>
-      Gérer les villes
+      {{ 'city.title' | translate }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -14,7 +14,7 @@
 <ion-content [fullscreen]="true" class="relative">
   <form [formGroup]="this.searchFormGroup" class="sticky top-0 bg-black">
     <ion-searchbar
-      placeholder="Search cities..."
+      placeholder="{{ 'city.search' | translate }}"
       [formControlName]="'search'"
       (ionClear)="clearSearch()">
     </ion-searchbar>

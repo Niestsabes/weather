@@ -1,0 +1,69 @@
+{
+    "city": {
+        "title": "Städte registrieren",
+        "search": "Städte suchen..."
+    },
+    "home": {
+        "main": {
+            "noCityRegistered": {
+                "title": "Keine Stadt registriert",
+                "description": "Klicken Sie auf die Schaltfläche unten, um eine Stadt zu registrieren und ihre Echtzeit-Wetterdaten abzurufen.",
+                "action": "Stadt registrieren"
+            },
+            "forecast": {
+                "title": "Vorhersage",
+                "details": "Details",
+                "forecast": "{{val1}}-Tage Vorhersage"
+            },
+            "shortForecast": {
+                "title": "24-Stunden Vorhersage"
+            },
+            "weatherDetail": {
+                "title": "Details",
+                "humidity": "Luftfeuchtigkeit",
+                "fellLike": "Gefühlt wie",
+                "presure": "Druck"
+            },
+            "windDetail": {
+                "title": "Wind",
+                "windDirectionValue": {
+                    "north": "Norden",
+                    "northEast": "Nordosten",
+                    "east": "Osten",
+                    "southEast": "Südosten",
+                    "south": "Süden",
+                    "southWest": "Südwesten",
+                    "west": "Westen",
+                    "northWest": "Nordwesten"
+                }
+            },
+            "sunDetail": {
+                "title": "Sonne",
+                "sunrise": "Sonnenaufgang",
+                "sunset": "Sonnenuntergang"
+            }
+        }
+    },
+    "parameters": {
+        "title": "Parameter",
+        "form": {
+            "units": {
+                "title": "Maßeinheiten",
+                "temperature": "Temperatur",
+                "presure": "Druck",
+                "wind": "Windgeschwindigkeit"
+            },
+            "about": {
+                "title": "Über",
+                "comments": "Kommentare",
+                "commentsDescription": "Gefällt Ihnen diese Anwendung?",
+                "dataFrom": "Daten von <a class='text-blue-400' href='{{val1}}' target='_blank'>OpenWeather</a> und <a class='text-blue-400' href='{{val2}}' target='_blank'>OpenCage</a> APIs.",
+                "developedBy": "App entwickelt von <a class='text-blue-400' href='{{val1}}' target='_blank'>Sébastien Cayet</a>"
+            }
+        }
+    },
+    "utils": {
+        "cancel": "Abbrechen",
+        "note": "Jetzt notieren!"
+    }
+}

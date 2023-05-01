@@ -6,7 +6,7 @@
       </ion-button>
     </ion-buttons>
     <ion-title>
-      Paramètres
+      {{ 'parameters.title' | translate }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -15,10 +15,10 @@
   <form [formGroup]="this.paramFormGroup">
     <ion-item-group>
       <ion-item-divider>
-        <ion-label>Unités de mesure</ion-label>
+        <ion-label>{{ 'parameters.form.units.title' | translate }}</ion-label>
       </ion-item-divider>
       <ion-item>
-        <ion-select formControlName="temperatureUnit" interface="popover" label="Température">
+        <ion-select formControlName="temperatureUnit" interface="popover" label="{{ 'parameters.form.units.temperature' | translate }}">
           <ion-select-option
             *ngFor="let temperatureUnit of this.ETemperatureUnit | keyvalue"
             [value]="temperatureUnit.value">
@@ -27,7 +27,7 @@
         </ion-select>
       </ion-item>
       <ion-item>
-        <ion-select formControlName="windUnit" interface="popover" label="Vitesse du vent">
+        <ion-select formControlName="windUnit" interface="popover" label="{{ 'parameters.form.units.wind' | translate }}">
           <ion-select-option
             *ngFor="let windUnit of this.EWindUnit | keyvalue"
             [value]="windUnit.value">
@@ -36,7 +36,7 @@
         </ion-select>
       </ion-item>
       <ion-item>
-        <ion-select formControlName="presureUnit" interface="popover" label="Pression Atmosphérique">
+        <ion-select formControlName="presureUnit" interface="popover" label="{{ 'parameters.form.units.presure' | translate }}">
           <ion-select-option
             *ngFor="let presureUnit of this.EPresureUnit | keyvalue"
             [value]="presureUnit.value">
@@ -47,19 +47,16 @@
     </ion-item-group>
     <ion-item-group>
       <ion-item-divider>
-        <ion-label>&Agrave; propos</ion-label>
+        <ion-label>{{ 'parameters.form.about.title' | translate }}</ion-label>
       </ion-item-divider>
       <ion-item [button]="true" (click)="ratingModal.open()">
-        <ion-label>Commentaires</ion-label>
+        <ion-label>{{ 'parameters.form.about.comments' | translate }}</ion-label>
       </ion-item>
-      <p class="text-center px-5 mt-3 text-gray-500">
-        Données fournies par
-        <a class="text-blue-400" href="https://openweathermap.org/" target="_blank">OpenWeather</a>
-        et
-        <a class="text-blue-400" href="https://opencagedata.com/" target="_blank">OpenCage</a>
+      <p class="text-center px-5 mt-3 text-gray-500" 
+        innerHTML="{{ 'parameters.form.about.dataFrom' | translate:{'val1': 'https://openweathermap.org/', 'val2': 'https://opencagedata.com/'} }}">
       </p>
-      <p class="text-center px-5 mt-3 text-gray-500">
-        Application développée par <a class="text-blue-400" href="https://github.com/Niestsabes/weather" target="_blank">Sébastien Cayet</a>
+      <p class="text-center px-5 mt-3 text-gray-500"
+        innerHTML="{{ 'parameters.form.about.developedBy' | translate:{'val1': 'https://github.com/Niestsabes/weather'} }}">
       </p>
     </ion-item-group>
   </form>

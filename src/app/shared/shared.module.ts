@@ -15,13 +15,15 @@ import { PresureUnitPipe } from './pipes/presure/presure-unit.pipe';
 import { PresureValuePipe } from './pipes/presure/presure-value.pipe';
 import { WindDirectionPipe } from './pipes/wind/wind-direction.pipe';
 import { ForecastGroupPipe } from './pipes/forecast/forecast-group.pipe';
+import { TranslateModule, TranslatePipe } from "@ngx-translate/core";
 
 const modules = [
     CommonModule,
     HttpClientModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
 ];
 const pipes = [
     DateFormatPipe,
@@ -39,6 +41,6 @@ const components = [ButtonComponent, ButtonIconComponent, WeatherIconComponent]
 @NgModule({
     imports: [...components, ...modules],
     exports: [...components, ...modules, ...pipes],
-    declarations: [...pipes, PresureUnitPipe, PresureValuePipe, WindDirectionPipe, ForecastGroupPipe]
+    declarations: [...pipes]
 })
 export class SharedModule {}
