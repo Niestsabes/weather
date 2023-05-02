@@ -48,9 +48,14 @@ Run ```ng e2e``` to execute the end-to-end.
 
 Icons has been provided by [FontAwesome](https://fontawesome.com/) and are powered by [Icomoon](https://icomoon.io/).
 
-For using icons from Icomoon font export:
-- Copy the content of ```./font``` folder in ```src/assets/font/icomoon```.
-- Copy the ```style.css``` in ```src/assets/font/icomoon```.
+In order to update the icon font used in the project:
+- Go to [IcomoonApp](https://icomoon.io/app/#/select).
+- Import the ```src/config/icomoon/selection.json``` file.
+- Add the new icons you want to use.
+- Generate the font.
+- Download the font.
+- Replace the fonts in ```src/assets/fonts/icomoon``` folder by the ones in the downloaded ```/font``` folder.
+- Replace ```src/assets/fonts/icomoon/style.css``` file by the downloaded one.
 - In the ```style.css``` file, replace the src urls ```./font/icomoon.{extention}``` by ```./icomoon.{extention}```.
 
 ## Further help
