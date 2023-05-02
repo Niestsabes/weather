@@ -5,20 +5,23 @@ import { CityApiService } from './city-api.service';
 import { CityUtilsService } from '../utils/city-utils.service';
 import { environment } from 'src/environments/environment';
 import { OpenCageResponse } from '../../models/opencage-response.type';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 describe('CityApiService', () => {
   let service: CityApiService;
   let httpMock: HttpTestingController;
   let cityUtilsService: CityUtilsService;
+  let translateService: TranslateService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, TranslateModule],
       providers: [CityUtilsService]
     });
     service = TestBed.inject(CityApiService);
     httpMock = TestBed.inject(HttpTestingController);
     cityUtilsService = TestBed.inject(CityUtilsService);
+    translateService = TestBed.inject(TranslateService);
   });
 
   it('should be created', () => {

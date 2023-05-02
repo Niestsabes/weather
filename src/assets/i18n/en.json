@@ -55,6 +55,7 @@
             },
             "about": {
                 "title": "About",
+                "language": "Language",
                 "comments": "Comments",
                 "commentsDescription": "Do you like this application ?",
                 "dataFrom": "Data from <a class='text-blue-400' href='{{val1}}' target='_blank'>OpenWeather</a> and <a class='text-blue-400' href='{{val2}}' target='_blank'>OpenCage</a> APIs.",

@@ -5,11 +5,12 @@ import { Store, select } from '@ngrx/store';
 import { EPresureUnit } from 'src/app/shared/enums/presure-unit.enum';
 import { ETemperatureUnit } from 'src/app/shared/enums/temparature-unit.enum';
 import { EWindUnit } from 'src/app/shared/enums/wind-unit.enum';
-import { AppState } from 'src/app/shared/models/state/app-state.interface';
+import { AppState, AppUserParams } from 'src/app/shared/models/state/app-state.interface';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { editUserParams } from 'src/app/shared/states/user/user.action';
+import { changeUserLanguage, editUserParams } from 'src/app/shared/states/user/user.action';
 import { selectUserParams } from 'src/app/shared/states/user/user.selector';
 import { ParameterRatingComponent } from './components/parameter-rating/parameter-rating.component';
+import { appConfig } from 'src/config/config';
 
 @Component({
   selector: 'app-parameter',
@@ -23,6 +24,7 @@ export class ParameterPage implements OnInit, OnDestroy {
   public readonly ETemperatureUnit = ETemperatureUnit;
   public readonly EWindUnit = EWindUnit;
   public readonly EPresureUnit = EPresureUnit;
+  public readonly listLanguage = appConfig.lang.available;
   public readonly userSettings$ = this._store.pipe(select(selectUserParams));
   public paramFormGroup!: FormGroup;
 
@@ -32,11 +34,15 @@ export class ParameterPage implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.userSettings$.subscribe((userSettings) => {
+    this.userSettings$.subscribe((userSettings: AppUserParams) => {
       this.paramFormGroup = this._formBuilder.group({
         temperatureUnit: [userSettings.temperatureUnit],
         windUnit: [userSettings.windUnit],
         presureUnit: [userSettings.presureUnit],
+        language: [userSettings.language],
+      });
+      this.paramFormGroup.get('language').valueChanges.subscribe((language: string) => {
+        this._store.dispatch(changeUserLanguage({ content: language }));
       });
     });
   }

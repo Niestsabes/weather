@@ -49,6 +49,15 @@
       <ion-item-divider>
         <ion-label>{{ 'parameters.form.about.title' | translate }}</ion-label>
       </ion-item-divider>
+      <ion-item>
+        <ion-select formControlName="language" interface="popover" label="{{ 'parameters.form.about.language' | translate }}">
+          <ion-select-option
+            *ngFor="let language of this.listLanguage"
+            [value]="language.code">
+            {{ language.label }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
       <ion-item [button]="true" (click)="ratingModal.open()">
         <ion-label>{{ 'parameters.form.about.comments' | translate }}</ion-label>
       </ion-item>

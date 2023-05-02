@@ -18,6 +18,7 @@ export type AppUserParams = {
     windUnit: EWindUnit;
     presureUnit: EPresureUnit;
     listCity: City[];
+    language: string;
 };
 
 export type AppStateLoadedValue<T = unknown> = {

@@ -8,18 +8,21 @@ import { Weather } from '../../models/weather.interface';
 import { WEATHER_MOCK } from 'src/app/mock/weather.mock';
 import { of, delay } from 'rxjs';
 import { City } from '../../models/city.interface';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 describe('WeatherApiService', () => {
   let service: WeatherApiService;
   let httpMock: HttpTestingController;
+  let translateService: TranslateService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, TranslateModule],
       providers: [WeatherUtilsService]
     });
     service = TestBed.inject(WeatherApiService);
     httpMock = TestBed.inject(HttpTestingController);
+    translateService = TestBed.inject(TranslateService);
   });
 
   it('should be created', () => {

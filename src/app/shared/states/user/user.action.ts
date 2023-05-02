@@ -7,6 +7,11 @@ export const editUserParams = createAction(
     props<{ content: AppUserParams }>()
 );
 
+export const changeUserLanguage = createAction(
+    '[To DO] Edit User Language',
+    props<{ content: string }>()
+);
+
 export const addCity = createAction(
     '[To DO] Add City',
     props<{ content: City }>()

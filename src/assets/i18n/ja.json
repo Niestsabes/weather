@@ -55,6 +55,7 @@
             },
             "about": {
                 "title": "アプリについて",
+                "language": "言語",
                 "comments": "コメント",
                 "commentsDescription": "このアプリケーションをお気に入りいただけましたか？",
                 "dataFrom": "<a class='text-blue-400' href='{{val1}}' target='_blank'>OpenWeather</a>と<a class='text-blue-400' href='{{val2}}' target='_blank'>OpenCage</a>APIからデータを取得しています。",

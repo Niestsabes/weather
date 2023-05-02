@@ -4,11 +4,13 @@ import { ETemperatureUnit } from "../../enums/temparature-unit.enum";
 import { EWindUnit } from "../../enums/wind-unit.enum";
 import { AppUserParams } from "../../models/state/app-state.interface";
 import { addCity, editUserParams, removeCity } from "./user.action";
+import { appConfig } from "src/config/config";
 
 const initialState: AppUserParams = {
     temperatureUnit: ETemperatureUnit.Celsius,
     windUnit: EWindUnit.KM_H,
     presureUnit: EPresureUnit.HPA,
+    language: appConfig.lang.default,
     listCity: []
 }
 

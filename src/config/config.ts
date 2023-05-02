@@ -3,7 +3,14 @@ export const appConfig = {
     nbDaysLongForecast: 5,
     searchKeywordMinLength: 2,
     lang: {
-        available: ['de', 'en', 'es', 'fr', 'it', 'ja'],
+        available: [
+            { code: 'de', label: 'Deutsch' },
+            { code: 'en', label: 'English' },
+            { code: 'es', label: 'Español' },
+            { code: 'fr', label: 'Français' },
+            { code: 'it', label: 'Italiano' },
+            { code: 'ja', label: '日本語' }
+        ],
         default: 'en'
     }
 }
