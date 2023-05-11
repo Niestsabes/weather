@@ -21,3 +21,8 @@ export const removeCity = createAction(
     '[To DO] Remove City',
     props<{ content: City }>()
 );
+
+export const saveListCity = createAction(
+    '[To DO] Save List City',
+    props<{ content: City[] }>()
+);

@@ -16,6 +16,7 @@ import { StoreModule } from '@ngrx/store';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 if (environment.production) {
   enableProdMode();
@@ -39,6 +40,7 @@ bootstrapApplication(AppComponent, {
         deps: [HttpClient]
       }
     })),
+    importProvidersFrom(IonicStorageModule.forRoot()),
     provideRouter(routes),
   ],
 });
