@@ -27,7 +27,7 @@ export class HomeForecastComponent implements OnInit {
   public readonly currentForecast$ = this._store.pipe(select(selectWeatherForecast));
   public readonly userSettings$ = this._store.pipe(select(selectUserParams));
 
-  @Input() focusedCityName!: string;
+  @Input() focusedCityId!: string;
 
   constructor(
     private _store: Store<AppState>

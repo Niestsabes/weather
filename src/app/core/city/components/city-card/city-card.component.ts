@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component, Input, OnInit, Output } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, Input, Output } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { Store, select } from '@ngrx/store';
 import { Subject } from 'rxjs';
@@ -19,20 +19,17 @@ register();
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [IonicModule, SharedModule]
 })
-export class CityCardComponent implements OnInit {
+export class CityCardComponent {
 
   @Input() city: City;
   @Output() removeCity = new Subject<void>();
-  
+
   public readonly currentWeather$ = this._store.pipe(select(selectWeather));
   public readonly userSettings$ = this._store.pipe(select(selectUserParams));
 
   constructor(
     private _store: Store<AppState>,
   ) { }
-
-  ngOnInit(): void {
-  }
 
   public remove(): void {
     this.removeCity.next();

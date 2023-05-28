@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let forecast of (this.currentForecast$ | async | forecastGroup:this.focusedCityName:this.APP_CONFIG.nbDaysShortForecast)">
+      <tr *ngFor="let forecast of (this.currentForecast$ | async | forecastGroup:this.focusedCityId:this.APP_CONFIG.nbDaysShortForecast)">
         <td class="text-center">
           <app-weather-icon
             [iconCode]="forecast.weather[0].icon"
@@ -31,7 +31,7 @@
       </tr>
     </tbody>
   </table>
-  <app-button [routerLink]="'/forecast'">
+  <app-button [routerLink]="'/forecast/' + this.focusedCityId">
     <span>{{ 'home.main.forecast.forecast' | translate:{'val1': this.APP_CONFIG.nbDaysLongForecast} }}</span>
   </app-button>
 </article>

@@ -19,22 +19,22 @@ export class UserEffect {
 
 	public loadDataForCity$ = createEffect(() => {
 		return this._actions$.pipe(
-			ofType(addCity),
-			switchMap((city) => [
-				loadWeatherForCity({ cityName: city.content.name }),
-				loadWeatherForecastForCity({ cityName: city.content.name })
-			])
-		)
+      ofType(addCity),
+      switchMap((response) => [
+        loadWeatherForCity({ city: response.city }),
+        loadWeatherForecastForCity({ city: response.city }),
+      ])
+    );
 	});
 
 	public unloadDataForCity$ = createEffect(() => {
 		return this._actions$.pipe(
-			ofType(removeCity),
-			switchMap((city) => [
-				removeWeatherForCity({ cityName: city.content.name }),
-				removeWeatherForecastForCity({ cityName: city.content.name })
-			])
-		)
+      ofType(removeCity),
+      switchMap((response) => [
+        removeWeatherForCity({ cityId: response.cityId }),
+        removeWeatherForecastForCity({ cityId: response.cityId }),
+      ])
+    );
 	});
 
 	public changeUserLanguage$ = createEffect(() => {

@@ -23,9 +23,22 @@ export class WeatherApiService {
     );
   }
 
+  public getCurrentWeatherByCoordinates(lat: number, lon: number): Observable<Weather> {
+    return this._http.get<Weather>(
+      `${environment.weatherApiUrl}/weather`,
+      { params: { lat: lat.toString(), lon: lon.toString(), appid: environment.weatherApiKey, lang: this._translate.currentLang } }
+    );
+  }
+
   public getCurrentWeatherByCities(listCity: City[]): Observable<RecordCity<Weather>> {
     let recordCityRequest: RecordCity<Observable<Weather>> = {};
-    listCity.forEach(city => recordCityRequest[city.name] = this.getCurrentWeatherByCity(city.name));
+    listCity.forEach(
+      (city) =>
+        (recordCityRequest[city.id] = this.getCurrentWeatherByCoordinates(
+          city.coord.lat,
+          city.coord.lon
+        ))
+    );
     return forkJoin(recordCityRequest);
   }
 
@@ -44,9 +57,21 @@ export class WeatherApiService {
 		);
 	}
 
+  public getGroupedForecastByCoordinates(lat: number, lon: number): Observable<WeatherForecast> {
+    return this._http.get<WeatherForecast>(
+      `${environment.weatherApiUrl}/forecast`,
+      { params: { lat: lat.toString(), lon: lon.toString(), appid: environment.weatherApiKey, lang: this._translate.currentLang } }
+    );
+  }
+
   public getGroupedForcastByCities(listCity: City[]): Observable<RecordCity<WeatherForecast>> {
 		let recordCityRequest: RecordCity<Observable<WeatherForecast>> = {};
-		listCity.forEach(city => recordCityRequest[city.name] = this.getGroupedForecastByCity(city.name));
+		listCity.forEach(
+      (city) =>
+        (recordCityRequest[city.id] = this.getGroupedForecastByCoordinates(
+          city.coord.lat, city.coord.lon
+        ))
+    );
 		return forkJoin(recordCityRequest);
 	}
 

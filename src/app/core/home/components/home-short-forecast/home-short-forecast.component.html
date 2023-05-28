@@ -4,7 +4,7 @@
     <span>{{ 'home.main.shortForecast.title' | translate }}</span>
   </h2>
   <div class="w-100 overflow-x-scroll flex">
-    <ul *ngIf="this.cityName && (this.currentForecast$ | async)[this.cityName] as cityForecast"
+    <ul *ngIf="this.cityId && (this.currentForecast$ | async)[this.cityId] as cityForecast"
       class="flex justify-start">
       <li *ngFor="let forecast of cityForecast.list.slice(0, this.NB_FORECAST_VALUES); let i = index"
         class="mx-1">

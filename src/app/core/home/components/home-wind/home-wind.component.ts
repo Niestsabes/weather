@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/shared/models/state/app-state.interface';
@@ -13,7 +13,7 @@ import { selectUserParams } from 'src/app/shared/states/user/user.selector';
   standalone: true,
   imports: [IonicModule, SharedModule]
 })
-export class HomeWindComponent  implements OnInit {
+export class HomeWindComponent {
 
   @Input() weather!: Weather;
 
@@ -22,7 +22,5 @@ export class HomeWindComponent  implements OnInit {
   constructor(
     private _store: Store<AppState>
   ) { }
-
-  ngOnInit() {}
 
 }

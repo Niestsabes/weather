@@ -3,7 +3,7 @@
     <header class="flex justify-between align-top">
       <app-button-icon [iconName]="'icon-plus'" [routerLink]="'/city'"></app-button-icon>
       <div>
-        <h1 class="text-4xl font-bold">{{ this.listCityLabel?.[this.idFocusedCity] }}</h1>
+        <h1 class="text-4xl font-bold">{{ this.focusedCityName | async }}</h1>
         <div id="swiper-pagination"></div>
       </div>
       <app-button-icon [iconName]="'icon-ellipsis-vertical'" [routerLink]="'/parameter'"></app-button-icon>
@@ -49,8 +49,8 @@
             </p>
           </main>
           <aside class="weather-detail-grid grid grid-flow-row grid-col-2 gap-4">
-            <app-home-forecast class="col-span-2" [focusedCityName]="weather.key" #homeForecast></app-home-forecast>
-            <app-home-short-forecast class="col-span-2" [cityName]="weather.key"></app-home-short-forecast>
+            <app-home-forecast class="col-span-2" [focusedCityId]="weather.key" #homeForecast></app-home-forecast>
+            <app-home-short-forecast class="col-span-2" [cityId]="weather.key"></app-home-short-forecast>
             <app-home-weather-detail class="row-span-2" [weather]="weather.value"></app-home-weather-detail>
             <app-home-wind [weather]="weather.value"></app-home-wind>
             <app-home-sunset [weather]="weather.value"></app-home-sunset>

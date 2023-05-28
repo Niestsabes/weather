@@ -14,10 +14,10 @@ export const changeUserLanguage = createAction(
 
 export const addCity = createAction(
     '[To DO] Add City',
-    props<{ content: City }>()
+    props<{ city: City }>()
 );
 
 export const removeCity = createAction(
     '[To DO] Remove City',
-    props<{ content: City }>()
+    props<{ cityId: string }>()
 );

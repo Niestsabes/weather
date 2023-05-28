@@ -20,17 +20,17 @@ export const userReducer = createReducer(
         ...state,
         ...content
     })),
-    on(addCity , (state: AppUserParams, { content }) => {
-        if (state.listCity.find(city => city.name === content.name)) {
+    on(addCity , (state: AppUserParams, { city }) => {
+        if (state.listCity.find(c => c.id === city.id)) {
             return state;
         }
         return {
             ...state,
-            listCity: [...state.listCity, content]
+            listCity: [...state.listCity, city]
         }
     }),
-    on(removeCity , (state: AppUserParams, { content }) => ({
+    on(removeCity , (state: AppUserParams, { cityId }) => ({
         ...state,
-        listCity: state.listCity.filter(city => city.name !== content.name)
+        listCity: state.listCity.filter(city => city.id !== cityId)
     })),
 );

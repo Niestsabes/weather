@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { Weather } from 'src/app/shared/models/weather.interface';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -10,12 +10,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
   standalone: true,
   imports: [IonicModule, SharedModule]
 })
-export class HomeSunsetComponent  implements OnInit {
+export class HomeSunsetComponent {
 
   @Input() weather!: Weather;
-  
-  constructor() { }
 
-  ngOnInit() {}
+  constructor() { }
 
 }

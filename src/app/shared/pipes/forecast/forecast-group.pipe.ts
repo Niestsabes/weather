@@ -11,9 +11,9 @@ export class ForecastGroupPipe implements PipeTransform {
     private _weatherUtilsService: WeatherUtilsService
   ) { }
 
-  transform(recordForecast: Record<string, WeatherForecast>, cityName: string, length: number): Weather[] {
-    if (!recordForecast[cityName] || length <= 0) return [];
-    const clone: WeatherForecast = JSON.parse(JSON.stringify(recordForecast[cityName]));
+  transform(recordForecast: Record<string, WeatherForecast>, cityId: string, length: number): Weather[] {
+    if (!recordForecast[cityId] || length <= 0) return [];
+    const clone: WeatherForecast = JSON.parse(JSON.stringify(recordForecast[cityId]));
     return this._weatherUtilsService.groupWeatherByDate(clone.list).slice(0, length);
   }
 }

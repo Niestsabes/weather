@@ -53,14 +53,14 @@ export class CityPage implements OnInit {
 
   public selectCity(city: City): void {
     if (!this.selectedCities.includes(city)) {
-      this._store.dispatch(addCity({ content: city }));
+      this._store.dispatch(addCity({ city: city }));
     }
   }
 
   public removeCity(city: City): void {
     const index = this.selectedCities.indexOf(city);
     if (index >= 0) {
-      this._store.dispatch(removeCity({ content: city }));
+      this._store.dispatch(removeCity({ cityId: city.id }));
     }
   }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { select, Store } from '@ngrx/store';
 import { ETemperatureUnit } from 'src/app/shared/enums/temparature-unit.enum';
@@ -15,22 +16,26 @@ import { selectWeather, selectWeatherForecast } from 'src/app/shared/states/weat
   templateUrl: './forecast.page.html',
   styleUrls: ['./forecast.page.scss'],
   standalone: true,
-  imports: [IonicModule, SharedModule]
+  imports: [IonicModule, SharedModule],
 })
 export class ForecastPage implements OnInit {
-
   public readonly ETemperatureUnit = ETemperatureUnit;
   public readonly EWindUnit = EWindUnit;
   public readonly nbDisplayedDays = 5;
   public readonly currentWeather$ = this._store.pipe(select(selectWeather));
-  public readonly currentForecast$ = this._store.pipe(select(selectWeatherForecast));
+  public readonly currentForecast$ = this._store.pipe(
+    select(selectWeatherForecast)
+  );
   public readonly userSettings$ = this._store.pipe(select(selectUserParams));
-  public focusedCityName: string = 'Paris';
+  public focusedCityId!: string;
 
   constructor(
-		private _store: Store<AppState>,
-    private _dateUtilsService: DateUtilsService,
-  ) { }
+    private _store: Store<AppState>,
+    private _route: ActivatedRoute,
+    private _dateUtilsService: DateUtilsService
+  ) {
+    this._route.params.subscribe((params) => this.focusedCityId = params['cityId']);
+  }
 
   ngOnInit() {
     this._store.dispatch(loadWeather());
@@ -40,5 +45,4 @@ export class ForecastPage implements OnInit {
   public isToday(timestamp: number): boolean {
     return this._dateUtilsService.isToday(timestamp);
   }
-
 }

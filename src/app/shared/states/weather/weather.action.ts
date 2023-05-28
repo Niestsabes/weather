@@ -1,6 +1,6 @@
 import { createAction, props } from "@ngrx/store";
 import { Weather, WeatherForecast } from "../../models/weather.interface";
-import { RecordCity } from "../../models/city.interface";
+import { City, RecordCity } from "../../models/city.interface";
 
 export const loadWeather = createAction(
     '[To DO] Load Weather'
@@ -32,22 +32,22 @@ export const loadWeatherForecastError = createAction(
 
 export const loadWeatherForCity = createAction(
     '[To DO] Load Weather for city',
-    props<{ cityName: string }>()
+    props<{ city: City }>()
 );
 
 export const loadWeatherForecastForCity = createAction(
     '[To DO] Load WeatherForecast for city',
-    props<{ cityName: string }>()
+    props<{ city: City }>()
 );
 
 export const loadWeatherForCitySuccess = createAction(
     '[To Do] Load Weather for city success',
-    props<{ cityName: string, weather: Weather }>()
+    props<{ cityId: string, weather: Weather }>()
 );
 
 export const loadWeatherForecastForCitySuccess = createAction(
     '[To Do] Load WeatherForecast for city success',
-    props<{ cityName: string, weather: WeatherForecast }>()
+    props<{ cityId: string; weather: WeatherForecast }>()
 );
 
 export const loadWeatherForCityError = createAction(
@@ -62,11 +62,11 @@ export const loadWeatherForecastForCityError = createAction(
 
 export const removeWeatherForCity = createAction(
     '[To Do] Remove Weather for city',
-    props<{ cityName: string }>()
+    props<{ cityId: string }>()
 );
 
 export const removeWeatherForecastForCity = createAction(
     '[To Do] Remove WeatherForecast for city',
-    props<{ cityName: string }>()
+    props<{ cityId: string }>()
 );
 

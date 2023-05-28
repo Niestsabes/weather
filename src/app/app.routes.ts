@@ -15,7 +15,7 @@ export const routes: Routes = [
     loadComponent: () => import('./core/city/city.page').then( m => m.CityPage)
   },
   {
-    path: 'forecast',
+    path: 'forecast/:cityId',
     loadComponent: () => import('./core/forecast/forecast.page').then( m => m.ForecastPage)
   },
   {

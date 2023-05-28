@@ -5,14 +5,13 @@ import { catchError, filter, map, of, switchMap, tap, withLatestFrom } from "rxj
 import { Weather, WeatherForecast } from "../../models/weather.interface";
 import { WeatherApiService } from "../../services/api/weather-api.service";
 import { loadWeather, loadWeatherSuccess, loadWeatherError, loadWeatherForecastSuccess, loadWeatherForecast, loadWeatherForCity, removeWeatherForCity, loadWeatherForCitySuccess, loadWeatherForCityError, loadWeatherForecastForCity, loadWeatherForecastForCitySuccess, loadWeatherForecastForCityError } from "./weather.action";
-import { WeatherUtilsService } from "../../services/utils/weather-utils.service";
 import { appConfig } from "src/config/config";
 import { AppState } from "../../models/state/app-state.interface";
 import { Store, select } from "@ngrx/store";
 import { selectWeatherData, selectWeatherForecastData } from "./weather.selector";
 import { ELoadingStatus } from "../../enums/loading-status.enum";
 import { selectListCity } from "../user/user.selector";
-import { RecordCity } from "../../models/city.interface";
+import { City, RecordCity } from "../../models/city.interface";
 
 @Injectable({ providedIn: 'root' })
 export class WeatherEffect {
@@ -22,8 +21,7 @@ export class WeatherEffect {
 	constructor(
 		private _actions$: Actions,
 		private _store: Store<AppState>,
-		private _weatherApiService: WeatherApiService,
-		private _weatherUtilsService: WeatherUtilsService
+		private _weatherApiService: WeatherApiService
 	) {}
 
 	public loadWeather$ = createEffect(() =>
@@ -37,7 +35,7 @@ export class WeatherEffect {
 			catchError((err: string) => of(loadWeatherError({ message: err })))
 		)
 	)
-	
+
 	public loadWeatherForecast$ = createEffect(() =>
 		this._actions$.pipe(
 			ofType(loadWeatherForecast),
@@ -53,29 +51,59 @@ export class WeatherEffect {
 	)
 
 	public loadWeatherPerCity$ = createEffect(() =>	{
-		let loadedCityName: string;
+		let loadedCity: City;
 		return this._actions$.pipe(
-			ofType(loadWeatherForCity),
-			tap((city) => loadedCityName = city.cityName),
-			withLatestFrom(this._store.pipe(select(selectWeatherData))),
-			filter(([_, weatherData]) => !Object.keys(weatherData.value).includes(loadedCityName)),
-			switchMap(() => this._weatherApiService.getCurrentWeatherByCity(loadedCityName)),
-			map((weather: Weather) => loadWeatherForCitySuccess({ cityName: loadedCityName, weather: weather })),
-			catchError((err: string) => of(loadWeatherForCityError({ message: err })))
-		)
+      ofType(loadWeatherForCity),
+      tap((response) => (loadedCity = response.city)),
+      withLatestFrom(this._store.pipe(select(selectWeatherData))),
+      filter(
+        ([_, weatherData]) =>
+          !Object.keys(weatherData.value).includes(loadedCity.id)
+      ),
+      switchMap(() =>
+        this._weatherApiService.getCurrentWeatherByCoordinates(
+          loadedCity.coord.lat,
+          loadedCity.coord.lon
+        )
+      ),
+      map((weather: Weather) => {
+        return loadWeatherForCitySuccess({
+          cityId: loadedCity.id,
+          weather: weather,
+        });
+      }
+
+      ),
+      catchError((err: string) => of(loadWeatherForCityError({ message: err })))
+    );
 	})
-	
+
 	public loadWeatherForecastPerCity$ = createEffect(() =>	{
-		let loadedCityName: string;
+		let loadedCity: City;
 		return this._actions$.pipe(
-			ofType(loadWeatherForecastForCity),
-			tap((city) => loadedCityName = city.cityName),
-			withLatestFrom(this._store.pipe(select(selectWeatherForecastData))),
-			filter(([_, weatherData]) => !Object.keys(weatherData.value).includes(loadedCityName)),
-			switchMap(() => this._weatherApiService.getGroupedForecastByCity(loadedCityName)),
-			map((weather: WeatherForecast) => loadWeatherForecastForCitySuccess({ cityName: loadedCityName, weather: weather })),
-			catchError((err: string) => of(loadWeatherForecastForCityError({ message: err })))
-		)
+      ofType(loadWeatherForecastForCity),
+      tap((response) => (loadedCity = response.city)),
+      withLatestFrom(this._store.pipe(select(selectWeatherForecastData))),
+      filter(
+        ([_, weatherData]) =>
+          !Object.keys(weatherData.value).includes(loadedCity.id)
+      ),
+      switchMap(() =>
+        this._weatherApiService.getGroupedForecastByCoordinates(
+          loadedCity.coord.lat,
+          loadedCity.coord.lon
+        )
+      ),
+      map((weather: WeatherForecast) =>
+        loadWeatherForecastForCitySuccess({
+          cityId: loadedCity.id,
+          weather: weather,
+        })
+      ),
+      catchError((err: string) =>
+        of(loadWeatherForecastForCityError({ message: err }))
+      )
+    );
 	})
 
 }
