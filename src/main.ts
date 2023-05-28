@@ -16,6 +16,9 @@ import { StoreModule } from '@ngrx/store';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { IonicStorageModule } from '@ionic/storage-angular';
+import * as CordovaSQLiteDriver from 'localforage-cordovasqlitedriver';
+import { Drivers } from '@ionic/storage';
 
 if (environment.production) {
   enableProdMode();
@@ -25,6 +28,12 @@ bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     importProvidersFrom(IonicModule.forRoot({})),
+    importProvidersFrom(IonicStorageModule.forRoot({
+      name: 'weatherAppDb',
+      description: 'Weather App Database',
+      version: 1.0,
+      driverOrder: [CordovaSQLiteDriver._driver, Drivers.IndexedDB, Drivers.LocalStorage]
+    })),
     importProvidersFrom(SharedModule),
     importProvidersFrom(StoreModule.forRoot({
       userParams: userReducer,

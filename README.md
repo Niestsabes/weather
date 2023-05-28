@@ -2,6 +2,7 @@
 
 This project was generated with [Ionic Angular](https://ionicframework.com/docs/angular/your-first-app) version 7.0.0.
 Styling is powered by [Tailwind](https://tailwindcss.com) and [Ionic UI Components](https://ionicframework.com/docs/components).
+Application icon made by [Riajulislam on Flaticon.com](https://www.flaticon.com/fr/icone-gratuite/nuages-et-soleil_9231620?term=weather&page=1&position=56&origin=search&related_id=9231620)
 
 ## Setup
 

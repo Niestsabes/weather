@@ -20,7 +20,7 @@
       </ion-popover> -->
     </header>
     <ng-container *ngIf="(this.currentWeather$ | async | keyvalue) as listCurrentWeather;">
-      <swiper-container *ngIf="listCurrentWeather.length > 0; else noCityTemplate"
+      <swiper-container id="swiper-container" *ngIf="listCurrentWeather.length > 0; else noCityTemplate"
         class="w-full flex-grow" [slidesPerView]="1" [loop]="false" [speed]="500" [spaceBetween]="20" [pagination]="this.swiperPagination"
         (slidechangetransitionend)="this.handleSlideChange($event)">
         <swiper-slide *ngFor="let weather of listCurrentWeather"

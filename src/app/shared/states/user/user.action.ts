@@ -7,6 +7,10 @@ export const editUserParams = createAction(
     props<{ content: AppUserParams }>()
 );
 
+export const editUserParamsSucces = createAction(
+    '[To Do] Edit User Params success'
+);
+
 export const changeUserLanguage = createAction(
     '[To DO] Edit User Language',
     props<{ content: string }>()

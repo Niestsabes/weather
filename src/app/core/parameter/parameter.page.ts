@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Store, select } from '@ngrx/store';
@@ -19,7 +19,7 @@ import { appConfig } from 'src/config/config';
   standalone: true,
   imports: [IonicModule, SharedModule, FormsModule, ParameterRatingComponent]
 })
-export class ParameterPage implements OnInit, OnDestroy {
+export class ParameterPage implements OnInit {
 
   public readonly ETemperatureUnit = ETemperatureUnit;
   public readonly EWindUnit = EWindUnit;
@@ -44,10 +44,9 @@ export class ParameterPage implements OnInit, OnDestroy {
       this.paramFormGroup.get('language').valueChanges.subscribe((language: string) => {
         this._store.dispatch(changeUserLanguage({ content: language }));
       });
+      this.paramFormGroup.valueChanges.subscribe((value: AppUserParams) => {
+        this._store.dispatch(editUserParams({ content: value }));
+      });
     });
-  }
-
-  ngOnDestroy(): void {
-    this._store.dispatch(editUserParams({ content: this.paramFormGroup.value }));
   }
 }
