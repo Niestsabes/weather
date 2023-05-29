@@ -2,11 +2,11 @@
   <h2 class="text-left font-bold" hidden>{{ 'home.main.sunDetail.title' | translate }}</h2>
   <ng-container *ngIf="weather?.sys">
     <p class="text-left">
-      <span>{{ weather?.sys?.sunrise | dateFormat:'HH:mm' }}</span>
+      <span class="text-white">{{ weather?.sys?.sunrise | dateFormat:'HH:mm' }}</span>
       <span class="text-gray-300 ml-1">{{ 'home.main.sunDetail.sunrise' | translate }}</span>
     </p>
     <p class="text-left">
-      <span>{{ weather?.sys?.sunset | dateFormat:'HH:mm' }}</span>
+      <span class="text-white">{{ weather?.sys?.sunset | dateFormat:'HH:mm' }}</span>
       <span class="text-gray-300 ml-1">{{ 'home.main.sunDetail.sunset' | translate }}</span>
     </p>
   </ng-container>

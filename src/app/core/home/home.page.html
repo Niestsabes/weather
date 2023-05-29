@@ -1,6 +1,6 @@
 <ion-content [fullscreen]="true">
   <section id="container" class="p-5 flex flex-col justify-between">
-    <header class="flex justify-between align-top">
+    <header class="flex justify-between align-top text-white">
       <app-button-icon [iconName]="'icon-plus'" [routerLink]="'/city'"></app-button-icon>
       <div>
         <h1 class="text-4xl font-bold">{{ this.focusedCityName | async }}</h1>
@@ -59,10 +59,10 @@
       </swiper-container>
       <ng-template #noCityTemplate>
         <main class="flex-grow flex flex-col justify-center items-center">
-          <h2 class="text-center text-slate-300 font-bold text-xl">
+          <h2 class="text-center text-slate-300 font-bold text-xl text-white">
             {{ 'home.main.noCityRegistered.title' | translate }}
           </h2>
-          <p class="w-3/4 mt-3">
+          <p class="w-3/4 mt-3 text-white">
             {{ 'home.main.noCityRegistered.description' | translate }}
           </p>
           <app-button [routerLink]="'/city'" class="w-3/4" [iconName]="'icon-plus'">

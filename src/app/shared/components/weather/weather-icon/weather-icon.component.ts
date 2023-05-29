@@ -11,7 +11,7 @@ import { IonicModule } from '@ionic/angular';
 })
 export class WeatherIconComponent  implements OnInit {
 
-  public readonly iconBaseUrl = 'http://openweathermap.org/img/wn/';
+  public readonly iconBaseUrl = 'https://openweathermap.org/img/wn/';
   public readonly iconExtension = '.png';
   @Input() public iconSize = 32;
   @Input() public iconCode!: string;

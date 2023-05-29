@@ -1,5 +1,5 @@
 {
-  "name": "Météo",
+  "name": "WeatherApp",
   "integrations": {
     "capacitor": {}
   },

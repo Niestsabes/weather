@@ -19,7 +19,7 @@ import { appConfig } from 'src/config/config';
 export class HomeForecastComponent implements OnInit {
 
   public readonly ETemperatureUnit = ETemperatureUnit;
-  public readonly imageBaseUrl = 'http://openweathermap.org/img/wn/';
+  public readonly imageBaseUrl = 'https://openweathermap.org/img/wn/';
   public readonly imageExtension = '.png';
   public readonly imageSize = 32;
   public readonly nbDisplayedDays = 3;
